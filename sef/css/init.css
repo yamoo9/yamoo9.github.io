@@ -1,0 +1,53 @@
+html {
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+  font-size: 10px;
+}
+body {
+  box-sizing: border-box;
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'helvetica', sans-serif;
+}
+body *,
+body *::before,
+body *::after {
+  box-sizing: inherit;
+}
+nav ul, nav ol {
+  list-style: none;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+.button {
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  background: transparent;
+}
+
+/* -------------------------------------------------
+ * 접근성 감춤
+ */
+.a11y-hidden {
+  overflow: hidden;
+  position: absolute;
+  clip:     rect(0 0 0 0); /* IE 6,7 */
+  clip:     rect(0,0,0,0);
+  width:    1px;
+  height:   1px;
+  margin:   -1px;
+  border:   0;
+  padding:  0;
+}
+.a11y-hidden.focusable:focus {
+  overflow: visible;
+  position: static;
+  clip:     auto;
+  width:    auto;
+  height:   auto;
+  margin:   0;
+}
+caption.a11y-hidden { position: static; }

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Music Player - SEF</title>
+  <link rel="stylesheet" href="css/init.css">
+  <link rel="stylesheet" href="css/util.css">
+  <link rel="stylesheet" href="css/player.css">
+  <link rel="stylesheet" href="css/player.anim.css">
+  <link rel="stylesheet" href="css/player.scroll-bar.css">
+</head>
+
+<body>
+
+  <!-- album-container -->
+  <div class="album-container is-center">
+
+    <!-- Audio Control -->
+    <audio class="album-player" preload></audio>
+    <!-- <audio class="album-player" src="media/source/01-OneCallAway.mp3" preload></audio> -->
+
+    <!-- playlist-container -->
+    <nav class="playlist-container is-center-x is-open">
+      <div class="playlist" role="group">
+        <h2 class="title">Nine Track Mind - Chalie Puth</h2>
+        <ol class="list">
+          <li class="item">
+            <span class="is-number">01</span> <span class="is-divider">|</span>
+            <a
+              role="button"
+              href="media/source/01-OneCallAway.mp3">One Call Away</a>
+            <time class="runtime">03:14</time>
+          </li>
+          <li class="item">
+            <span class="is-number">02</span> <span class="is-divider">|</span>
+            <a
+              role="button"
+              href="media/source/02-Dangerously.mp3">Dangerously</a>
+            <time class="runtime">03:19</time>
+          </li>
+          <li class="item">
+            <span class="is-number">03</span> <span class="is-divider">|</span>
+            <a
+              role="button"
+              href="media/source/03-MarvinGaye.mp3">Marvin Gaye (feat. Meghan Trainor)</a>
+            <time class="runtime">03:10</time>
+          </li>
+        </ol>
+      </div>
+    </nav>
+
+    <!-- album-cover -->
+    <img
+      class="album-cover is-rwd"
+      src="media/cover.jpg"
+      width="1000"
+      height="1000"
+      alt="Ed Sheeran - Shape of You">
+
+    <!-- album-control -->
+    <div class="album-control is-center is-flex-center" role="group">
+      <button
+        type="button"
+        class="button is-play"
+        aria-label="play"></button>
+      <button
+        type="button"
+        class="button is-pause is-pre"
+        aria-label="pause"></button>
+    </div>
+
+  </div>
+
+  <!-- <script src="js/audiojs/audio.min.js"></script> -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/audiojs/1.0.1/audio.min.js"
+    integrity="sha256-0jcTJ71rMXZVI405U/k6YSuuJpfZTfmBAibQ7EnUni4="
+    crossorigin="anonymous"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TimelineMax.min.js"
+    integrity="sha256-6FlxHAM36h7oNgPM/SPJsQ76VBbsmE2jdeFtDrOaT5o="
+    crossorigin="anonymous"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"
+    integrity="sha256-YrHP9EpeNLlYetSffKlRFg8VWcXFRbz5nhNXTMqlQlo="
+    crossorigin="anonymous"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.slim.min.js"
+    integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+    crossorigin="anonymous"></script>
+  <script src="js/music-controller.js"></script>
+</body>
+
+</html>

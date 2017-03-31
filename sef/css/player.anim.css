@@ -1,0 +1,106 @@
+@keyframes open-playlist {
+  from {
+    top: 100%;
+    opacity: 0
+  }
+  70% {
+    opacity: 1;
+  }
+  to {
+    top: 50%;
+  }
+}
+@keyframes close-playlist {
+  from {
+    top: 50%;
+    opacity: 1
+  }
+  70% {
+    opacity: 0;
+  }
+  to {
+    top: 100%;
+  }
+}
+
+
+@keyframes play {
+  from {
+    transform: scale(0);
+    transform: rotate(-135deg);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+}
+
+
+@keyframes pause {
+  from {
+    transform: scale(1);
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0);
+    transform: rotate(180deg);
+    opacity: 0;
+  }
+}
+
+
+@keyframes album-play {
+  from {
+    transform: scale(0.2);
+    opacity: 0
+  }
+  to {
+    transform: scale(1);
+    opacity: 1
+  }
+}
+
+
+@keyframes album-pause {
+  from {
+    transform: scale(1);
+    opacity: 1
+  }
+  30% {
+    opacity: 0
+  }
+  to {
+    transform: scale(0.2);
+    opacity: 0
+  }
+}
+
+
+@keyframes album-play-m {
+  from {
+    transform: scale(0.2);
+    opacity: 0
+  }
+  to {
+    transform: scale(1);
+    opacity: 1
+  }
+}
+
+
+@keyframes album-pause-m {
+  from {
+    transform: scale(1);
+    opacity: 1
+  }
+  30% {
+    opacity: 0
+  }
+  to {
+    transform: scale(0.2);
+    opacity: 0
+  }
+}
