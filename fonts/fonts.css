@@ -1,0 +1,21 @@
+@font-face {
+	font-family: "UniSansDemo-HeavyCAPS";
+	src: url("./uni-sans-demo/UniSansDemo-HeavyCAPS.eot?#iefix") format("embedded-opentype"),
+		url("./uni-sans-demo/UniSansDemo-HeavyCAPS.otf") format("opentype"),
+		url("./uni-sans-demo/UniSansDemo-HeavyCAPS.woff") format("woff"),
+		url("./uni-sans-demo/UniSansDemo-HeavyCAPS.ttf") format("truetype"),
+		url("./uni-sans-demo/UniSansDemo-HeavyCAPS.svg#UniSansDemo-HeavyCAPS") format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "UniSansDemo-ThinCAPS";
+	src: url("./uni-sans-demo/UniSansDemo-ThinCAPS.eot?#iefix") format("embedded-opentype"),
+		url("./uni-sans-demo/UniSansDemo-ThinCAPS.otf") format("opentype"),
+		url("./uni-sans-demo/UniSansDemo-ThinCAPS.woff") format("woff"),
+		url("./uni-sans-demo/UniSansDemo-ThinCAPS.ttf") format("truetype"),
+		url("./uni-sans-demo/UniSansDemo-ThinCAPS.svg#UniSansDemo-ThinCAPS") format("svg");
+	font-weight: normal;
+	font-style: normal;
+}

@@ -1,0 +1,588 @@
+::selection {
+	color: #4a30e9;
+	background: #ff0;
+}
+
+img::selection {
+	background: transparent;
+}
+
+* {
+	box-sizing: border-box;
+	transition: all 0.3s ease-in-out;
+}
+
+body {
+	margin: 1.25rem; /* 20px */
+	font: 1rem/1.5 "Spoqa Han Sans", sans-serif;
+	background: #4a30e9;
+	color: #fff;
+}
+
+dl {
+	margin: 0;
+}
+
+dd {
+	margin-left: 0;
+}
+
+img {
+	vertical-align: middle;
+}
+
+/* 타이포그래피 */
+h1,
+h2,
+h3 {
+	margin: 0;
+	font-weight: normal;
+}
+
+.uni-sans-heavy {
+	font-family: "UniSansDemo-HeavyCAPS";
+}
+
+.uni-sans-thin {
+	font-family: "UniSansDemo-ThinCAPS";
+}
+
+.roboto {
+	font-family: "Roboto";
+}
+
+.all-caps {
+	text-transform: uppercase;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+abbr[title] {
+	cursor: help;
+	text-decoration: none;
+}
+
+a[href] {
+	text-decoration: none;
+	color: #fff;
+}
+
+/* 공통 스타일 모듈 */
+.reset-list {
+	margin: 0;
+	list-style: none;
+	padding-left: 0;
+}
+
+.reset-list li {
+	font-weight: 700;
+}
+
+.rwd-media img {
+	width: 100%;
+	height: auto;
+}
+
+/* 접근성 스타일 모듈 */
+.a11y-hidden {
+	position: absolute;
+	clip: rect(0 0 0 0);
+	overflow: hidden;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	white-space: nowrap;
+}
+
+/* 반응형 스타일 모듈 */
+.mobile-only-visible {
+	display: inline-block;
+}
+.desktop-only-visible {
+	display: none;
+}
+
+/* 스타일링 */
+header {
+	display: flex;
+	flex-flow: row wrap;
+}
+
+header > * {
+	flex: 1 1 50%;
+}
+
+header > h1 {
+	text-align: right;
+}
+
+header > a {
+	order: -1;
+}
+
+.catchprize {
+	margin-top: 3.125rem; /* 50px */
+	margin-bottom: 0;
+	font-size: 2.5rem; /* 40px */
+	line-height: 1;
+}
+
+.tags {
+	font-size: 0.875rem; /* 14px */
+	line-height: 1.142; /* 16px */
+}
+
+main {
+	display: flex;
+	flex-flow: row wrap;
+	align-items: flex-start;
+	/* min-height: 100vh; */
+	margin: 20px -20px 0;
+	padding-left: 20px;
+	padding-right: 20px;
+	background: #fff;
+	color: #4a30e9;
+}
+
+.module-title {
+	order: -2;
+	flex: 1 1 50%;
+	margin-top: 28px;
+	font-size: 1.25rem; /* 20px */
+	line-height: 1;
+}
+
+.module-list {
+	flex: 1 1 auto;
+	width: 100%;
+	margin-top: 20px;
+}
+
+.module-item {
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 1rem;
+	padding-bottom: 1rem;
+	border-bottom: 1px solid rgba(152, 139, 239, 0.623);
+}
+
+.module-item:last-child {
+	margin-bottom: 0;
+	padding-bottom: 0;
+	border-bottom: none;
+}
+
+.module {
+	margin-right: 1rem; /* 16px */
+	font-size: 6.25rem; /* 100px */
+	line-height: 1;
+}
+
+.module:nth-child(2) {
+	margin-bottom: -1rem;
+}
+
+.module-contents {
+	font-size: 0.875rem; /* 14px */
+}
+
+.divider {
+	font-weight: 300;
+	opacity: 0.7;
+}
+
+.lecturers {
+	order: -1;
+	flex: 1 1 50%;
+	margin-top: 28px;
+	display: flex;
+	flex-flow: column;
+	align-items: flex-end;
+}
+
+.lecturer {
+	display: flex;
+	align-items: center;
+	min-width: 4.5rem; /* 72px */
+	margin-bottom: 10px;
+}
+
+.lecturer:last-child {
+	margin-bottom: 0;
+}
+
+.lecturer a {
+	display: flex;
+	flex-flow: row;
+	align-items: center;
+}
+
+.lecturer picture {
+	display: inherit;
+	width: 2.1875rem; /* 35px */
+	height: 2.1875rem;
+	margin-right: 0.4375rem; /* 7px */
+}
+
+.lecturer span {
+	font-size: 1.3125rem; /* 21px */
+	line-height: 1;
+	color: #4a30e9;
+}
+
+.module-links {
+	order: -3;
+	display: flex;
+	flex-flow: row;
+	flex: 1 1 auto;
+	width: 100%;
+	margin: 0 -20px;
+	padding: 20px;
+	background: #4a30e9;
+}
+
+.module-link {
+	display: flex;
+	flex: 1 1 auto;
+	flex-flow: row;
+	justify-content: center;
+	align-items: center;
+	padding: 1em;
+	font-size: 1.125rem; /* 18px */
+	font-weight: 700;
+	line-height: 1.2;
+}
+
+.module-link.filled-white {
+	background: #fff;
+	color: #4a30e9;
+}
+
+.module-link::before {
+	content: '';
+	display: block;
+	width: 2.125rem; /* 32px */
+	height: 1.25rem; /* 20px */
+	margin-right: 1rem; /* 28px */
+	background: url("../images/arrow-blue.svg") no-repeat center;
+}
+
+.module-link.unfilled-white {
+	border: 2px solid #fff;
+	background: #4a30e9;
+	color: #fff;
+}
+
+.module-link.unfilled-white::before {
+	background-image: url("../images/arrow-white.svg");
+}
+
+.lecture-info {
+	position: relative;
+	width: 120%;
+	margin-left: -20px;
+	margin-right: -20px;
+	background: #4a30e9;
+	color: #fff;
+	line-height: 1;
+}
+
+.lecture-definition {
+	display: flex;
+	flex-flow: row wrap;
+	padding: 20px;
+	padding-bottom: 13px;
+}
+
+.lecture-date {
+	order: 1;
+	flex: 1 1 100%;
+	margin-top: 10px;
+	margin-bottom: 196px;
+}
+
+.lecture-type {
+	order: 2;
+	flex: 1 1 50%;
+	display: flex;
+	align-items: flex-end;
+}
+
+.lecture-type dd {
+	padding-left: 1rem;
+}
+
+.lecture-with {
+	order: 3;
+	flex: 1 1 50%;
+	align-self: flex-end;
+}
+
+.with-lecturer {
+	font-size: 20px;
+	line-height: 1;
+}
+
+.lecture-infographic {
+	position: absolute;
+	top: 143px;
+	right: 25px;
+}
+
+.lecture-infographic img {
+	width: 184px;
+}
+
+.with {
+	font-size: 12px;
+}
+
+.lecture-date {
+	font-size: 3.125rem; /* 50px */
+	line-height: 1;
+}
+
+.lecture-figure {
+	position: relative;
+	margin: 0 20px;
+}
+
+.lecture-figure::before {
+	content: '';
+	position: absolute;
+	right: calc(100% - 3px);
+	top: -80px;
+	width: 100vw;
+	height: 100px;
+	border-top: 1px solid #fff;
+	border-right: 1px solid #fff;
+}
+
+.lecture-figure img {
+	position: relative;
+	z-index: 1;
+}
+
+footer {
+	padding-top: 37px;
+	padding-bottom: 17px;
+	text-align: center;
+}
+
+/* 데스크탑: 1080px+ */
+@media screen and (min-width: 1080px) {
+	.mobile-only-visible {
+		display: none;
+	}
+	.desktop-only-visible {
+		display: block;
+	}
+	.lecture-info {
+		/* width: 120%; */
+	}
+
+	header {
+		display: block;
+	}
+
+	.home-link {
+		position: fixed;
+		top: 30px;
+		left: 30px;
+	}
+
+	.logo {
+		position: fixed;
+		top: 30px;
+		right: 30px;
+	}
+
+	.tags {
+		position: fixed;
+		top: 47px;
+		left: 140px;
+	}
+	.tags > li {
+		float: left;
+		margin-right: 16px;
+	}
+	.tags > li:last-child {
+		margin-right: 0;
+	}
+
+	.catchprize {
+		margin-top: 164px;
+		margin-left: 164px;
+		font-size: 80px;
+	}
+
+	main {
+		display: block;
+		position: relative;
+		width: 760px;
+		/* min-width: 760px;
+		max-width: 760px; */
+		top: 120px;
+		left: 190px;
+	}
+
+	.module-title {
+		padding-top: 15px;
+		margin-left: 352px;
+		margin-bottom: 60px;
+	}
+
+	.lecturers {
+		display: block;
+		position: absolute;
+		top: 15px;
+		right: 15px;
+		margin-top: 0;
+	}
+
+	.lecturer {
+		float: left;
+		min-width: initial;
+		margin-bottom: 0;
+		margin-right: 10px;
+	}
+
+	.lecturer:last-child {
+		margin-right: 0;
+	}
+
+	.lecturer picture {
+		margin-right: 0;
+	}
+
+	.module-item {
+		float: left;
+		width: 47%;
+		min-height: 110px;
+		margin-bottom: 47px;
+		margin-right: 20px;
+		padding-bottom: 0;
+		border-bottom: none;
+	}
+
+	.module-links {
+		position: relative;
+		left: -14px;
+		bottom: 24px;
+		width: 360px;
+		background: transparent;
+	}
+
+	.module-link.filled-white {
+		border: 2px solid currentColor;
+		background: #fff;
+		color: #4a30e9;
+	}
+
+	.module-link.unfilled-white {
+		border: none;
+		background: #4a30e9;
+		color: #fff;
+	}
+
+	.lecture-date {
+		position: fixed;
+		bottom: 30px;
+		left: 30px;
+		margin: 0;
+	}
+
+	.lecture-infographic {
+		position: fixed;
+		top: 350px;
+		right: 39px;
+	}
+
+	.lecture-infographic img {
+		width: 125px;
+	}
+
+	.lecture-with {
+		position: fixed;
+		top: 480px;
+		right: 63px;
+	}
+
+	.lecture-info {
+		position: static;
+	}
+
+	.lecture-type {
+		position: absolute;
+		top: -50px;
+		left: 373px;
+		padding: 0;
+	}
+
+	.lecture-definition {
+		display: block;
+		padding: 0;
+	}
+
+	.lecture-type dd {
+		padding-left: 0;
+	}
+
+	.lecture-figure {
+		position: absolute;
+		top: -80px;
+		left: -70px;
+		width: 430px;
+		margin: 0;
+	}
+
+	.lecture-figure::before {
+		width: 70px;
+		height: 75px;
+		top: initial;
+		left: -15px;
+		bottom: -15px;
+		border: 0;
+		border-left: 1px solid #fff;
+		border-bottom: 1px solid #fff;
+	}
+
+	.lecture-figure::after {
+		content: '';
+		position: absolute;
+		width: 100vw;
+		height: 1px;
+		top: 50%;
+		transform: translateY(-50%);
+		background: #fff;
+	}
+
+	footer {
+		position: fixed;
+		bottom: 30px;
+		right: 30px;
+		margin: 0;
+		padding: 0;
+	}
+}
+
+@media screen and (min-width: 1400px) {
+	.tags > li {
+		margin-right: 22px;
+	}
+	main {
+		left: 490px;
+	}
+	.lecture-figure {
+		top: -80px;
+		left: -260px;
+	}
+	.module-title {
+		margin-left: 168px;
+	}
+	.lecture-type {
+		left: 190px;
+	}
+}
