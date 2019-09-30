@@ -1,7 +1,25 @@
-# [야무의 웹 프로젝트](http://yamoo9.github.io)
+# Front-End Masters League
 
-- 웹 환경 분석 및 학습
-- GitHub 계정 등록 및 온라인 저장소 추가
-- 로컬 저장소에 복사
-- READEME.md 파일 수정
-- 커밋 & 싱크
+lecturing the next level of UI develop
+
+## Module A
+
+- 웹 표준 및 접근성 
+- 구조 디자인 | HTML5
+- 표현 디자인 | CSS3 스타일링/레이아웃
+- 반응형 디자인 | RWD
+- 버전 관리 | Git & GitHub
+
+## Module B
+
+- 인터랙션 디자인 | JavaScript + DOM API
+- 비동기 프로그래밍 | AJAX 및 보안 이슈
+- RESTful 웹 서비스 | CRUD + REST API
+- 모던 자바스크립트 | ES 6+
+
+## Module C
+
+- React 라이브러리
+- Styled Component 라이브러리
+- React Redux 라이브러리
+- React Router 라이브러리
