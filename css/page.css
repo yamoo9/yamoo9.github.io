@@ -7,9 +7,11 @@ img::selection {
 	background: transparent;
 }
 
-* {
+body *,
+body *::before,
+body *::after {
 	box-sizing: border-box;
-	transition: all 0.3s ease-in-out;
+	transition: all 0.4s ease;
 }
 
 body {
@@ -377,8 +379,23 @@ footer {
 	html {
 		overflow-x: hidden;
 	}
-	.mobile-only-visible {
-		display: none;
+	.lecturer .mobile-only-visible {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: absolute;
+		opacity: 0;
+		top: 0;
+		left: 0;
+		width: 36px;
+		height: 36px;
+		border-radius: 50%;
+		background: rgba(73, 48, 233, 0.9);
+		color: #fff;
+		font-size: 1rem;
+	}
+	.lecturer .uni-sans-thin {
+		color: #fff;
 	}
 	.desktop-only-visible {
 		display: block;
@@ -414,17 +431,21 @@ footer {
 	}
 
 	.catchprize {
+		display: inline-block;
 		margin-top: 164px;
 		margin-left: 164px;
 		font-size: 80px;
+		perspective: 15px;
+	}
+
+	.catchprize > span {
+		display: inline-block;
 	}
 
 	main {
 		display: block;
 		position: relative;
 		width: 760px;
-		/* min-width: 760px;
-		max-width: 760px; */
 		top: 120px;
 		left: 190px;
 	}
@@ -433,6 +454,21 @@ footer {
 		padding-top: 15px;
 		margin-left: 352px;
 		margin-bottom: 60px;
+	}
+
+	.module-link::before {
+		animation: loop-moveX 0.3s ease-in-out infinite alternate;
+		animation-play-state: paused;
+	}
+
+	.module-link:hover::before,
+	.module-link:focus::before {
+		animation-play-state: running;
+	}
+
+	.module-link:hover,
+	.module-link:focus {
+		animation: blink 0.08s 2;
 	}
 
 	.lecturers {
@@ -456,6 +492,15 @@ footer {
 
 	.lecturer picture {
 		margin-right: 0;
+	}
+
+	.lecturer > a {
+		position: relative;
+	}
+
+	.lecturer > a:hover .mobile-only-visible,
+	.lecturer > a:focus .mobile-only-visible {
+		opacity: 1;
 	}
 
 	.module-item {
@@ -585,5 +630,34 @@ footer {
 	}
 	.lecture-type {
 		left: 190px;
+	}
+}
+
+/* 애니메이션 키 프레임 */
+@keyframes loop-moveX {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(3px);
+	}
+}
+
+@keyframes blink {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.55;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes tranform-none {
+	to {
+		transform: none;
+		opacity: 1;
 	}
 }
