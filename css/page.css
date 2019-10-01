@@ -276,7 +276,18 @@ main {
 	top: 143px;
 	right: 25px;
 }
+.lecture-infographic::before {
+	content: '';
+	position: absolute;
+	top: 24px;
+	left: -60px;
+	width: 108px;
+	height: 108px;
+	background: url("../images/link-schedule.svg") no-repeat center;
+}
 .lecture-infographic img {
+	position: relative;
+	z-index: 1;
 	width: 184px;
 }
 .with {
@@ -308,7 +319,9 @@ footer {
 	padding-top: 37px;
 	padding-bottom: 17px;
 	text-align: center;
-} /* 데스크탑: 1080px+ */
+}
+
+/* 데스크탑: 1080px+ */
 @media screen and (min-width: 1080px) {
 	html {
 		overflow-x: hidden;
@@ -527,6 +540,18 @@ footer {
 		top: 50%;
 		transform: translateY(-50%);
 		background: #fff;
+	}
+	.lecture-infographic::before {
+		opacity: 0;
+		top: -18px;
+		left: -60px;
+		transform: translateY(10px);
+	}
+
+	.lecture-schedule:hover .lecture-infographic::before,
+	.lecture-schedule:focus .lecture-infographic::before {
+		opacity: 1;
+		transform: none;
 	}
 	footer {
 		position: fixed;

@@ -18,6 +18,13 @@
 			trackpadButtonSound.play()
 		})
 	})
+
+	var woodyBeepSound = new SoundControl('./sound/woody-beep.mp3', 0.6)
+	var lectureScheduleLink = document.querySelector('.lecture-schedule')
+	lectureScheduleLink.addEventListener('mouseenter', function(){
+		woodyBeepSound.play()
+	})
+
 })(SoundControl)
 
 // Shuffle Text
