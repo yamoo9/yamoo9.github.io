@@ -1,64 +1,31 @@
 // Play Links Tick Sound
-;(function() {
+;(function(SoundControl) {
 	'use strict'
+	if (!SoundControl) return
 
-	var audio = new Audio()
-	audio.src = './sound/btn-over-sound.mp3'
-	audio.volume = 0
-
-	var playSound = function() {
-		audio.volume = 0.5
-		var promise = audio.play()
-		if (promise !== undefined) {
-			promise
-				.then(function(_) {
-					// audio.currentTime = 0
-				})
-				.catch(function(error) {
-					// console.error(error.message)
-				})
-		}
-	}
-
+	var btnOverSound = new SoundControl('./sound/btn-over-sound.mp3', 0.45)
 	var moduleLinks = document.querySelectorAll('.module-link')
-
 	Array.prototype.forEach.call(moduleLinks, function(link) {
-		link.addEventListener('mouseenter', playSound)
+		link.addEventListener('mouseenter', function() {
+			btnOverSound.play()
+		})
 	})
-})()
-;(function() {
-	'use strict'
 
-	var audio = new Audio()
-	audio.src = './sound/trackpad-button-click.mp3'
-	audio.volume = 0
-
-	var playSound = function() {
-		audio.pause()
-		audio.currentTime = 0
-		audio.volume = 0.9
-		var promise = audio.play()
-		if (promise !== undefined) {
-			promise
-				.then(function(_) {
-					// audio.currentTime = 0
-				})
-				.catch(function(error) {
-					// console.error(error.message)
-				})
-		}
-	}
-
+	var trackpadButtonSound = new SoundControl('./sound/trackpad-button-click.mp3')
 	var lecturers = document.querySelectorAll('.lecturer > a')
-
 	Array.prototype.forEach.call(lecturers, function(lecture) {
-		lecture.addEventListener('mouseenter', playSound)
+		lecture.addEventListener('mouseenter', function() {
+			trackpadButtonSound.play()
+		})
 	})
-})()
+})(SoundControl)
 
 // Shuffle Text
-;(function($) {
+;(function($, SoundControl) {
 	'use strcit'
+	if (!$) return
+
+	var shuffleSound = new SoundControl('./sound/shuffle.mp3')
 	var tags = document.querySelectorAll('.tag')
 	var delay = 300
 	Array.prototype.forEach.call(tags, function(tag, i) {
@@ -68,9 +35,10 @@
 		shuffleText.sourceRandomCharacter = 'yamoo9'
 		setTimeout(function() {
 			shuffleText.start()
+			if (i === 1) shuffleSound.play()
 		}, 50 * ++i + delay)
 	})
-})(ShuffleText)
+})(ShuffleText, SoundControl)
 
 // Mouse Move Effect - 3D Perspective Text
 ;(function() {
