@@ -138,6 +138,9 @@ main {
 	padding-bottom: 1rem;
 	border-bottom: 1px solid rgba(152, 139, 239, 0.623);
 }
+.module-item:nth-child(2) {
+	padding-bottom: 0;
+}
 .module-item:last-child {
 	margin-bottom: 0;
 	padding-bottom: 0;

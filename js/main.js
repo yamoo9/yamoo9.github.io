@@ -27,6 +27,24 @@
 
 })(SoundControl)
 
+// Random Video
+;(function() {
+	'use strict'
+
+	var videoList = [
+		'music-note',
+		'notebook',
+		'typing',
+		'running'
+	]
+
+	var randomVideo = function() {
+		return './video/' + videoList[Math.floor(Math.random() * videoList.length)] + '.mp4'
+	}
+	var video = document.querySelector('#bg-video-wrapper video')
+	video.setAttribute('src', randomVideo())
+})()
+
 // Shuffle Text
 ;(function($, SoundControl) {
 	'use strcit'
