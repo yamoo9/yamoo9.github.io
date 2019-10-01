@@ -185,10 +185,7 @@
   </header>
 
   <main>
-    <h2
-      title="모듈 스텝"
-      class="uni-sans-heavy module-title"
-    >
+    <h2 class="uni-sans-heavy module-title">
       module<br />step.
     </h2>
     <ul class="reset-list module-list">
@@ -277,10 +274,10 @@
           C <span class="a11y-hidden">모듈</span>
         </h3>
         <ul class="reset-list module-contents">
-          <li>React 라이브러리</li>
-          <li>Styled Component 라이브러리</li>
-          <li>React Redux 라이브러리</li>
-          <li>React Router 라이브러리</li>
+          <li>React 프레임 워크</li>
+          <li>Styled Component</li>
+          <li>React Redux</li>
+          <li>React Router</li>
         </ul>
       </li>
     </ul>
@@ -357,12 +354,14 @@
       <dl class="lecture-definition uni-sans-heavy">
         <div class="lecture-type">
           <dt class="a11y-hidden">강의 유형</dt>
-          <dd
-            lang="en"
-            title="블렌디드 러닝이란? 온라인+오프라인 병행 교육을 말합니다."
-            class="uni-sans-heavy"
-          >
-            blended<br />learning
+          <dd class="is-blended-learning">
+            <button
+              type="button"
+              class="uni-sans-heavy"
+              lang="en"
+              aria-haspopup="dialog"
+              aria-pressed="false"
+            >blended<br />learning</button>
           </dd>
         </div>
         <div class="lecture-date">
@@ -391,6 +390,7 @@
         class="lecture-schedule"
         target="_blank"
         rel="noreferrer noopener"
+        aria-label="강의 일정"
       >
         <picture class="lecture-infographic rwd-media">
           <source
@@ -435,6 +435,29 @@
       muted
       loop
     ></video>
+  </div>
+  <div
+    class="dim"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="blended-video-title"
+  >
+    <h3
+      id="blended-video-title"
+      class="a11y-hidden"
+    >
+      블렌디드 러닝이란?
+    </h3>
+    <video
+      src="./video/is-blended-learning.mp4"
+      controls
+      preload="auto"
+    ></video>
+    <button
+      type="button"
+      class="button-dim-close uni-sans-thin"
+      aria-label="모달 닫기"
+    >×</button>
   </div>
 </body>
 

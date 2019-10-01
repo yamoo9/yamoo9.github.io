@@ -11,7 +11,7 @@
 		})
 	})
 
-	var trackpadButtonSound = new SoundControl('./sound/trackpad-button-click.mp3')
+	var trackpadButtonSound = new SoundControl('./sound/btn-over-sound.mp3', 0.45)
 	var lecturers = document.querySelectorAll('.lecturer > a')
 	Array.prototype.forEach.call(lecturers, function(lecture) {
 		lecture.addEventListener('mouseenter', function() {
@@ -23,6 +23,12 @@
 	var lectureScheduleLink = document.querySelector('.lecture-schedule')
 	lectureScheduleLink.addEventListener('mouseenter', function(){
 		woodyBeepSound.play()
+	})
+
+	var burstsSound = new SoundControl('./sound/btn-over-sound.mp3', 0.45)
+	var blendedLearningButton = document.querySelector('.is-blended-learning button')
+	blendedLearningButton.addEventListener('mouseenter', function(){
+		burstsSound.play()
 	})
 
 })(SoundControl)
@@ -43,6 +49,41 @@
 	}
 	var video = document.querySelector('#bg-video-wrapper video')
 	video.setAttribute('src', randomVideo())
+})()
+
+// Dim Video
+;(function() {
+	'use strict'
+
+	// button-dim-close
+	var blendedLearningButton = document.querySelector('.is-blended-learning button')
+	var dim = document.querySelector('.dim')
+	var blendedLearningVideo = document.querySelector('.dim video')
+	var dimCloseButton = document.querySelector('.button-dim-close')
+
+	var showDim = function() {
+		dim.classList.add('is-active')
+		blendedLearningVideo.play()
+		blendedLearningVideo.focus()
+	}
+
+	var hideDim = function() {
+		dim.classList.remove('is-active')
+		blendedLearningVideo.pause()
+		blendedLearningButton.focus()
+	}
+
+	blendedLearningButton.addEventListener('click', showDim)
+
+	dim.addEventListener('click', function(e) {
+		switch(e.target.localName) {
+			case 'div':
+			case 'button':
+				hideDim()
+		}
+	})
+	// dimCloseButton.addEventListener('click', hideDim)
+
 })()
 
 // Shuffle Text
