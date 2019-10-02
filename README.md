@@ -1,6 +1,17 @@
-# Front-End Masters League
+# 마스터스 리그
 
-lecturing the next level of UI develop
+Front-End 개발자를 꿈꾸는 이들을 위한 블렌디드 러닝으로 개발에 필요한 모든 것! → [GO! 모집 페이지](https://yamoo9.github.io)
+
+[![Front-End Masters League](./Assets/cover.jpg)](https://yamoo9.github.io)
+
+# 마스터스 리그 강사진
+
+모듈 | 강사
+-- | --
+A | 김데레사 (Deresa Kim)
+B,C | 야무 (yamoo9)
+
+# 마스터스 리그 강의
 
 ## Module A
 
@@ -19,7 +30,7 @@ lecturing the next level of UI develop
 
 ## Module C
 
-- React 라이브러리
-- Styled Component 라이브러리
-- React Redux 라이브러리
-- React Router 라이브러리
+- React 프레임워크
+- Styled Component
+- React Redux
+- React Router
