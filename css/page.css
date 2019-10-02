@@ -5,17 +5,23 @@
 img::selection {
 	background: transparent;
 }
-body *,
-body *::before,
-body *::after {
-	box-sizing: border-box;
-	transition: all 0.4s ease;
-}
 body {
 	margin: 1.25rem; /* 20px */
 	font: 1rem/1.5 "Spoqa Han Sans", sans-serif;
 	background: #4a30e9; /* background: #000; */
 	color: #fff;
+}
+body *,
+body *::before,
+body *::after {
+	box-sizing: border-box;
+	transition: all 0.25s ease-out;
+}
+body *:focus {
+	z-index: 100;
+	box-shadow: 0 0 0 5px #ffe91f;
+	border-radius: 1px;
+	outline: none;
 }
 dl {
 	margin: 0;
@@ -183,6 +189,10 @@ main {
 	flex-flow: row;
 	align-items: center;
 }
+.lecturer a:focus {
+	border-radius: 50%;
+	/* box-shadow: 0 0 0 5px #ffe91f; */
+}
 .lecturer picture {
 	display: inherit;
 	width: 2.1875rem; /* 35px */
@@ -252,19 +262,21 @@ main {
 	animation: blink 0.08s 2;
 }
 .is-blended-learning::before {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	content: '?';
 	position: absolute;
 	top: 0;
 	right: 0;
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
 	transform: translate(70%, -70%);
 	font-size: 14px;
-	line-height: 0.9;
-	padding: 0.3em 0.45em 0.2em;
-	/* border: 3px solid #fff; */
+	font-family: "UniSansDemo-HeavyCAPS";
 	background: #ffffff;
 	color: #4a30e9;
-	border-radius: 50%;
-	/* title="블렌디드 러닝이란? 온라인+오프라인 병행 교육을 말합니다." */
 }
 .is-blended-learning button {
 	cursor: pointer;
@@ -276,7 +288,8 @@ main {
 	color: #ffffff;
 }
 .is-blended-learning button:focus {
-	color: #ff0;
+	color: #ffe91f;
+	box-shadow: none;
 }
 .dim {
 	display: none;

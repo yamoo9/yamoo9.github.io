@@ -1,3 +1,10 @@
+// Utils
+var each = function(list, callback) {
+	Array.prototype.forEach.call(list, function(item, index) {
+		callback(item, index)
+	})
+}
+
 // Play Links Tick Sound
 ;(function(SoundControl) {
 	'use strict'
@@ -21,16 +28,15 @@
 
 	var woodyBeepSound = new SoundControl('./sound/woody-beep.mp3', 0.6)
 	var lectureScheduleLink = document.querySelector('.lecture-schedule')
-	lectureScheduleLink.addEventListener('mouseenter', function(){
+	lectureScheduleLink.addEventListener('mouseenter', function() {
 		woodyBeepSound.play()
 	})
 
 	var burstsSound = new SoundControl('./sound/btn-over-sound.mp3', 0.45)
 	var blendedLearningButton = document.querySelector('.is-blended-learning button')
-	blendedLearningButton.addEventListener('mouseenter', function(){
+	blendedLearningButton.addEventListener('mouseenter', function() {
 		burstsSound.play()
 	})
-
 })(SoundControl)
 
 // Random Video
@@ -41,7 +47,7 @@
 		'music-note',
 		'notebook',
 		'typing',
-		'running'
+		'running',
 	]
 
 	var randomVideo = function() {
@@ -58,13 +64,15 @@
 	// button-dim-close
 	var blendedLearningButton = document.querySelector('.is-blended-learning button')
 	var dim = document.querySelector('.dim')
-	var blendedLearningVideo = document.querySelector('.dim video')
-	var dimCloseButton = document.querySelector('.button-dim-close')
+	var blendedLearningVideo = dim.querySelector('video')
+	var dimCloseButton = dim.querySelector('.button-dim-close')
 
 	var showDim = function() {
 		dim.classList.add('is-active')
-		blendedLearningVideo.play()
 		blendedLearningVideo.focus()
+		setTimeout(function() {
+			blendedLearningVideo.play()
+		}, 400)
 	}
 
 	var hideDim = function() {
@@ -75,15 +83,65 @@
 
 	blendedLearningButton.addEventListener('click', showDim)
 
+	// A11Y
+	blendedLearningButton.addEventListener('keyup', function(e) {
+		// Tab Key === 9
+		if (e.keyCode === 9 && e.shiftKey) dimCloseButton.focus()
+	})
+	dimCloseButton.addEventListener('keyup', function(e) {
+		if (e.keyCode === 9) blendedLearningVideo.focus()
+	})
+
 	dim.addEventListener('click', function(e) {
-		switch(e.target.localName) {
+		switch (e.target.localName) {
 			case 'div':
 			case 'button':
 				hideDim()
 		}
 	})
-	// dimCloseButton.addEventListener('click', hideDim)
+})()
 
+// Lecturer Event Control:
+// 1. Mouse Enter/Leave
+// 2. Keyboards Focus/Blur
+;(function() {
+	'use strict'
+
+	var lecturers = document.querySelector('.lecturers')
+	var lecturerDeresaLink = lecturers.querySelector('.lecturer:first-child a')
+	var lecturerY9Link = lecturers.querySelector('.lecturer:last-child a')
+
+	var lectureWith = document.querySelector('.lecture-with')
+	var allTextInLectureWith = lectureWith.querySelectorAll('span')
+	var withY9Text = lectureWith.querySelector('.with-lecturer')
+	var withDeresaText = lectureWith.querySelector('.with-lecturer:last-child')
+
+	var bringOut = function(moduleType) {
+		each(allTextInLectureWith, function(text) {
+			text.style.opacity = 0.5
+		})
+		if (moduleType === 'a') {
+			withDeresaText.style.opacity = 1
+		} else {
+			withY9Text.style.opacity = 1
+		}
+	}
+
+	var bringIn = function(e) {
+		each(allTextInLectureWith, function(text) {
+			text.style.opacity = 1
+		})
+	}
+
+	lecturerDeresaLink.addEventListener('mouseenter', bringOut.bind(lecturerDeresaLink, 'a'))
+	lecturerDeresaLink.addEventListener('mouseleave', bringIn)
+	lecturerDeresaLink.addEventListener('focus', bringOut.bind(lecturerDeresaLink, 'a'))
+	lecturerDeresaLink.addEventListener('blur', bringIn)
+
+	lecturerY9Link.addEventListener('mouseenter', bringOut.bind(lecturerY9Link, 'b,c'))
+	lecturerY9Link.addEventListener('mouseleave', bringIn)
+	lecturerY9Link.addEventListener('focus', bringOut.bind(lecturerY9Link, 'b,c'))
+	lecturerY9Link.addEventListener('blur', bringIn)
 })()
 
 // Shuffle Text
