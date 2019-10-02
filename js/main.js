@@ -56,6 +56,7 @@
 		setTimeout(function() {
 			blendedLearningVideo.play()
 		}, 600)
+		document.addEventListener('keyup', escHideDim)
 	}
 
 	var hideDim = function() {
@@ -63,6 +64,11 @@
 		dim.classList.remove('is-active')
 		blendedLearningVideo.pause()
 		blendedLearningButton.focus()
+		document.removeEventListener('keyup', escHideDim)
+	}
+
+	var escHideDim = function(e) {
+		if (e.keyCode === 27 /* Esc */) hideDim()
 	}
 
 	blendedLearningButton.addEventListener('click', showDim)
