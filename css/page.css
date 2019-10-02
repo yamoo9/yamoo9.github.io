@@ -411,6 +411,10 @@ footer {
 	text-align: center;
 }
 
+footer a {
+	display: block;
+}
+
 /* 데스크탑: 1080px+ */
 @media screen and (min-width: 1080px) {
 	html {
