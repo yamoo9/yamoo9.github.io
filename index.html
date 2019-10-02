@@ -91,7 +91,9 @@
     rel="prefetch"
     href="./sound/shuffle.mp3"
   />
+  <script src="./js/utils.js"></script>
   <script src="./js/SoundControl.js"></script>
+  <script src="./js/Perspective3DText.js"></script>
   <script src="./js/shffle.min.js"></script>
   <script
     src="./js/main.js"
@@ -414,33 +416,12 @@
     </aside>
   </main>
 
-  <footer>
-    <h2 lang="en">
-      <img
-        src="/images/play-fed.svg"
-        alt="Play! Front-End Develop"
-        class="play-fed"
-      />
-    </h2>
-  </footer>
-
-  <div
-    id="bg-video-wrapper"
-    role="presentation"
-  >
-    <video
-      src="./video/typing.mp4"
-      preload="auto"
-      autoplay
-      muted
-      loop
-    ></video>
-  </div>
   <div
     class="dim"
     role="dialog"
     aria-modal="true"
     aria-labelledby="blended-video-title"
+    tabindex="0"
   >
     <h3
       id="blended-video-title"
@@ -459,6 +440,31 @@
       aria-label="모달 닫기"
     >×</button>
   </div>
+
+  <div
+    id="bg-video-wrapper"
+    role="presentation"
+  >
+    <video
+      src="./video/typing.mp4"
+      preload="auto"
+      autoplay
+      muted
+      loop
+    ></video>
+  </div>
+
+  <footer>
+    <h2 lang="en">
+      <a href="#">
+        <img
+          src="/images/play-fed.svg"
+          alt="Play! Front-End Develop"
+          class="play-fed"
+        />
+      </a>
+    </h2>
+  </footer>
 </body>
 
 </html>

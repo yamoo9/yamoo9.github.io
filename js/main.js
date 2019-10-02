@@ -1,46 +1,28 @@
-// Utils
-var each = function(list, callback) {
-	Array.prototype.forEach.call(list, function(item, index) {
-		callback(item, index)
-	})
-}
-
-// Play Links Tick Sound
-;(function(SoundControl) {
+// 사운트 컨트롤
+;(function(_, SoundControl) {
 	'use strict'
-	if (!SoundControl) return
 
 	var btnOverSound = new SoundControl('./sound/btn-over-sound.mp3', 0.45)
-	var moduleLinks = document.querySelectorAll('.module-link')
-	Array.prototype.forEach.call(moduleLinks, function(link) {
-		link.addEventListener('mouseenter', function() {
-			btnOverSound.play()
-		})
+	var moduleLinks = _.elList('.module-link')
+	_.each(moduleLinks, function(link) {
+		link.addEventListener('mouseenter', btnOverSound.play.bind(btnOverSound))
 	})
 
-	var trackpadButtonSound = new SoundControl('./sound/btn-over-sound.mp3', 0.45)
-	var lecturers = document.querySelectorAll('.lecturer > a')
-	Array.prototype.forEach.call(lecturers, function(lecture) {
-		lecture.addEventListener('mouseenter', function() {
-			trackpadButtonSound.play()
-		})
+	var lecturers = _.elList('.lecturer > a')
+	_.each(lecturers, function(lecture) {
+		lecture.addEventListener('mouseenter', btnOverSound.play.bind(btnOverSound))
 	})
 
 	var woodyBeepSound = new SoundControl('./sound/woody-beep.mp3', 0.6)
-	var lectureScheduleLink = document.querySelector('.lecture-schedule')
-	lectureScheduleLink.addEventListener('mouseenter', function() {
-		woodyBeepSound.play()
-	})
+	var lectureScheduleLink = _.el('.lecture-schedule')
+	lectureScheduleLink.addEventListener('mouseenter', woodyBeepSound.play.bind(woodyBeepSound))
 
-	var burstsSound = new SoundControl('./sound/btn-over-sound.mp3', 0.45)
-	var blendedLearningButton = document.querySelector('.is-blended-learning button')
-	blendedLearningButton.addEventListener('mouseenter', function() {
-		burstsSound.play()
-	})
-})(SoundControl)
+	var blendedLearningButton = _.el('.is-blended-learning button')
+	blendedLearningButton.addEventListener('mouseenter', btnOverSound.play.bind(btnOverSound))
+})(y9, SoundControl)
 
-// Random Video
-;(function() {
+// 랜덤 배경 비디오
+;(function(_) {
 	'use strict'
 
 	var videoList = [
@@ -53,29 +35,31 @@ var each = function(list, callback) {
 	var randomVideo = function() {
 		return './video/' + videoList[Math.floor(Math.random() * videoList.length)] + '.mp4'
 	}
-	var video = document.querySelector('#bg-video-wrapper video')
-	video.setAttribute('src', randomVideo())
-})()
 
-// Dim Video
-;(function() {
+	var video = _.el('#bg-video-wrapper video')
+	video.setAttribute('src', randomVideo())
+})(y9)
+
+// 블렌디드 러닝 비디오 + 딤(dim)
+;(function(_) {
 	'use strict'
 
-	// button-dim-close
-	var blendedLearningButton = document.querySelector('.is-blended-learning button')
-	var dim = document.querySelector('.dim')
-	var blendedLearningVideo = dim.querySelector('video')
-	var dimCloseButton = dim.querySelector('.button-dim-close')
+	var blendedLearningButton = _.el('.is-blended-learning button')
+	var dim = _.el('.dim')
+	var blendedLearningVideo = _.el('video', dim)
+	var dimCloseButton = _.el('.button-dim-close', dim)
 
 	var showDim = function() {
+		blendedLearningButton.setAttribute('aria-pressed', true)
 		dim.classList.add('is-active')
-		blendedLearningVideo.focus()
+		dim.focus()
 		setTimeout(function() {
 			blendedLearningVideo.play()
-		}, 400)
+		}, 600)
 	}
 
 	var hideDim = function() {
+		blendedLearningButton.setAttribute('aria-pressed', false)
 		dim.classList.remove('is-active')
 		blendedLearningVideo.pause()
 		blendedLearningButton.focus()
@@ -84,12 +68,13 @@ var each = function(list, callback) {
 	blendedLearningButton.addEventListener('click', showDim)
 
 	// A11Y
-	blendedLearningButton.addEventListener('keyup', function(e) {
-		// Tab Key === 9
-		if (e.keyCode === 9 && e.shiftKey) dimCloseButton.focus()
+	dim.addEventListener('keyup', function(e) {
+		if (e.shiftKey && e.keyCode === 9) {
+			dimCloseButton.focus()
+		}
 	})
-	dimCloseButton.addEventListener('keyup', function(e) {
-		if (e.keyCode === 9) blendedLearningVideo.focus()
+	dimCloseButton.addEventListener('blur', function(e) {
+		blendedLearningVideo.focus()
 	})
 
 	dim.addEventListener('click', function(e) {
@@ -99,36 +84,33 @@ var each = function(list, callback) {
 				hideDim()
 		}
 	})
-})()
+})(y9)
 
-// Lecturer Event Control:
-// 1. Mouse Enter/Leave
-// 2. Keyboards Focus/Blur
-;(function() {
+// 강사 이벤트 컨트롤
+// - 1. 마우스 이벤트: Enter/Leave
+// - 2. 키 이벤트: Focus/Blur
+;(function(_) {
 	'use strict'
 
-	var lecturers = document.querySelector('.lecturers')
-	var lecturerDeresaLink = lecturers.querySelector('.lecturer:first-child a')
-	var lecturerY9Link = lecturers.querySelector('.lecturer:last-child a')
+	var lecturers = _.el('.lecturers')
+	var lecturerDeresaLink = _.el('.lecturer:first-child a', lecturers)
+	var lecturerY9Link = _.el('.lecturer:last-child a', lecturers)
 
-	var lectureWith = document.querySelector('.lecture-with')
-	var allTextInLectureWith = lectureWith.querySelectorAll('span')
-	var withY9Text = lectureWith.querySelector('.with-lecturer')
-	var withDeresaText = lectureWith.querySelector('.with-lecturer:last-child')
+	var lectureWith = _.el('.lecture-with')
+	var allTextInLectureWith = _.elList('span', lectureWith)
+	var withY9Text = _.el('.with-lecturer', lectureWith)
+	var withDeresaText = _.el('.with-lecturer:last-child', lectureWith)
 
 	var bringOut = function(moduleType) {
-		each(allTextInLectureWith, function(text) {
+		_.each(allTextInLectureWith, function(text) {
 			text.style.opacity = 0.5
 		})
-		if (moduleType === 'a') {
-			withDeresaText.style.opacity = 1
-		} else {
-			withY9Text.style.opacity = 1
-		}
+		if (moduleType === 'a') withDeresaText.style.opacity = 1
+		else withY9Text.style.opacity = 1
 	}
 
 	var bringIn = function(e) {
-		each(allTextInLectureWith, function(text) {
+		_.each(allTextInLectureWith, function(text) {
 			text.style.opacity = 1
 		})
 	}
@@ -142,17 +124,17 @@ var each = function(list, callback) {
 	lecturerY9Link.addEventListener('mouseleave', bringIn)
 	lecturerY9Link.addEventListener('focus', bringOut.bind(lecturerY9Link, 'b,c'))
 	lecturerY9Link.addEventListener('blur', bringIn)
-})()
+})(y9)
 
-// Shuffle Text
-;(function($, SoundControl) {
+// 셔플 텍스트
+;(function(_, $, SoundControl) {
 	'use strcit'
-	if (!$) return
 
 	var shuffleSound = new SoundControl('./sound/shuffle.mp3')
-	var tags = document.querySelectorAll('.tag')
+	var tags = _.elList('.tag')
 	var delay = 300
-	Array.prototype.forEach.call(tags, function(tag, i) {
+
+	_.each(tags, function(tag, i) {
 		var shuffleText = new $(tag)
 		shuffleText.duration = 400
 		shuffleText.emptyCharacter = ' '
@@ -162,77 +144,11 @@ var each = function(list, callback) {
 			if (i === 1) shuffleSound.play()
 		}, 50 * ++i + delay)
 	})
-})(ShuffleText, SoundControl)
+})(y9, ShuffleText, SoundControl)
 
-// Mouse Move Effect - 3D Perspective Text
-;(function() {
-	var container = document.querySelector('.catchprize')
-	container.innerHTML = '<span>' + container.innerHTML + '</span>'
-	var inner = container.querySelector('span')
-	var mouse = {
-		_x: 0,
-		_y: 0,
-		x: 0,
-		y: 0,
-		updatePosition: function(event) {
-			var e = event || window.event
-			this.x = e.clientX - this._x
-			this.y = (e.clientY - this._y) * -1
-		},
-		setOrigin: function(e) {
-			this._x = e.offsetLeft + Math.floor(e.offsetWidth / 2)
-			this._y = e.offsetTop + Math.floor(e.offsetHeight / 2)
-		},
-		show: function() {
-			return '(' + this.x + ', ' + this.y + ')'
-		},
-	}
+// 3D 퍼스펙티브 텍스트
+;(function(_, Perspective3DText) {
+	'use strict'
 
-	mouse.setOrigin(container)
-
-	//-----------------------------------------
-
-	var counter = 0
-	var updateRate = 10
-	var isTimeToUpdate = function() {
-		return counter++ % updateRate === 0
-	}
-
-	//-----------------------------------------
-
-	var onMouseEnterHandler = function(event) {
-		update(event)
-	}
-
-	var onMouseLeaveHandler = function() {
-		inner.style = ''
-	}
-
-	var onMouseMoveHandler = function(event) {
-		if (isTimeToUpdate()) {
-			update(event)
-		}
-	}
-
-	//-----------------------------------------
-
-	var update = function(event) {
-		mouse.updatePosition(event)
-		updateTransformStyle((mouse.y / inner.offsetHeight / 2).toFixed(2), (mouse.x / inner.offsetWidth / 2).toFixed(2))
-	}
-
-	var updateTransformStyle = function(x, y) {
-		var style = 'rotateX(' + x + 'deg) rotateY(' + y + 'deg)'
-		inner.style.transform = style
-		inner.style.webkitTransform = style
-		inner.style.mozTransform = style
-		inner.style.msTransform = style
-		inner.style.oTransform = style
-	}
-
-	//-----------------------------------------
-
-	container.onmouseenter = onMouseEnterHandler
-	container.onmouseleave = onMouseLeaveHandler
-	container.onmousemove = onMouseMoveHandler
-})()
+	new Perspective3DText(_.el('.catchprize'))
+})(y9, Perspective3DText)
