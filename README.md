@@ -4,16 +4,16 @@ Front-End 개발자를 꿈꾸는 이들을 위한 블렌디드 러닝으로 개�
 
 [![Front-End Masters League](./Assets/cover.jpg)](https://yamoo9.github.io)
 
-# 마스터스 리그 강사진
+## 마스터스 리그 강사진
 
 모듈 | 강사
 -- | --
-A | 김데레사 (Deresa Kim)
-B,C | 야무 (yamoo9)
+A | 김데레사 (Deresa Kim) &nbsp;[f](https://www.facebook.com/seulbinim)
+B,C | 야무 (yamoo9) &nbsp;[f](https://www.facebook.com/yamoo9)
 
-# 마스터스 리그 강의
+## 마스터스 리그 강의
 
-## Module A
+### Module A
 
 - 웹 표준 및 접근성 
 - 구조 디자인 | HTML5
@@ -21,14 +21,14 @@ B,C | 야무 (yamoo9)
 - 반응형 디자인 | RWD
 - 버전 관리 | Git & GitHub
 
-## Module B
+### Module B
 
 - 인터랙션 디자인 | JavaScript + DOM API
 - 비동기 프로그래밍 | AJAX 및 보안 이슈
 - RESTful 웹 서비스 | CRUD + REST API
 - 모던 자바스크립트 | ES 6+
 
-## Module C
+### Module C
 
 - React 프레임워크
 - Styled Component
