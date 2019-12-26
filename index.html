@@ -1,1 +1,470 @@
-<!doctype html><html lang="ko-KR"><head><meta charset="UTF-8"/><title>이듬(EUID) 블렌디드 러닝</title><meta name="description" content="이듬(EUID) 블렌디드 러닝"/><meta name="keywords" content="웹, 웹 개발, 프론트엔드, 프론트엔드 개발, UI, 접근성, 블렌디드 러닝"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#5382F6"/><meta property="og:title" content="이듬(EUID) 블렌디드 러닝"/><meta property="twitter:title" content="이듬(EUID) 블렌디드 러닝"/><meta property="og:type" content="article"/><meta property="og:url" content="https://yamoo9.github.io"/><meta property="og:description" content="Front-End 개발자를 꿈꾸는 이들을 위한 블렌디드 러닝으로 개발에 필요한 모든 것!"/><meta property="og:image" content="https://yamoo9.github.io/images/og-image.png"/><meta property="og:article:author" content="야무(yamoo9)"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/spoqa-han-sans/2.1.2/css/SpoqaHanSans-kr.min.css"/><link rel="icon" href="/favicon.png"/><link rel="apple-touch-icon" href="/logo192.png"/><link rel="manifest" href="/manifest.json"/><script class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script><link href="/static/css/2.8f0d8aca.chunk.css" rel="stylesheet"><link href="/static/css/main.41134625.chunk.css" rel="stylesheet"></head><body><noscript>이 사이트를 이용하려면? 사용 중인 웹 브라우저에서 JavaScript를 활성화 해야 합니다.</noscript><div class="elicit-install-modern-browsers"><h1>서비스를 정상적으로 이용할 수 없습니다.</h1><p>사용 중인 오래된 웹 브라우저를 사용하면 서비스를 정상적으로 이용할 수 없습니다.<br>안전하고 빠른 서비스 이용을 위해 <a href="https://www.webbup.kr/jsp/event/event2019.jsp" target="_blank" rel="noopener noreferrer">구형 웹 브라우저를 최신 브라우저로 업그레이드 하세요<span style="font-style:italic">!</span></a></p></div><div id="app"></div><script>!function(f){function e(e){for(var r,t,n=e[0],o=e[1],u=e[2],i=0,l=[];i<n.length;i++)t=n[i],Object.prototype.hasOwnProperty.call(p,t)&&p[t]&&l.push(p[t][0]),p[t]=0;for(r in o)Object.prototype.hasOwnProperty.call(o,r)&&(f[r]=o[r]);for(s&&s(e);l.length;)l.shift()();return c.push.apply(c,u||[]),a()}function a(){for(var e,r=0;r<c.length;r++){for(var t=c[r],n=!0,o=1;o<t.length;o++){var u=t[o];0!==p[u]&&(n=!1)}n&&(c.splice(r--,1),e=i(i.s=t[0]))}return e}var t={},p={1:0},c=[];function i(e){if(t[e])return t[e].exports;var r=t[e]={i:e,l:!1,exports:{}};return f[e].call(r.exports,r,r.exports,i),r.l=!0,r.exports}i.m=f,i.c=t,i.d=function(e,r,t){i.o(e,r)||Object.defineProperty(e,r,{enumerable:!0,get:t})},i.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},i.t=function(r,e){if(1&e&&(r=i(r)),8&e)return r;if(4&e&&"object"==typeof r&&r&&r.__esModule)return r;var t=Object.create(null);if(i.r(t),Object.defineProperty(t,"default",{enumerable:!0,value:r}),2&e&&"string"!=typeof r)for(var n in r)i.d(t,n,function(e){return r[e]}.bind(null,n));return t},i.n=function(e){var r=e&&e.__esModule?function(){return e.default}:function(){return e};return i.d(r,"a",r),r},i.o=function(e,r){return Object.prototype.hasOwnProperty.call(e,r)},i.p="/";var r=this.webpackJsonpeuid=this.webpackJsonpeuid||[],n=r.push.bind(r);r.push=e,r=r.slice();for(var o=0;o<r.length;o++)e(r[o]);var s=n;a()}([])</script><script src="/static/js/2.caff1341.chunk.js"></script><script src="/static/js/main.ebb14420.chunk.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="ko-KR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+  <meta
+    http-equiv="X-UA-Compatible"
+    content="ie=edge"
+  />
+  <title>Front-End 마스터스 리그(Masters League)</title>
+  <!-- webfonts -->
+  <link
+    href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+    rel="stylesheet"
+  />
+  <!-- favicon -->
+  <!-- open graph -->
+  <link
+    rel="icon"
+    href="./images/favicon.png"
+  />
+  <meta
+    name="theme-color"
+    content="#4A30E9"
+  />
+  <meta
+    property="og:title"
+    content="Front-End Masters League"
+  />
+  <meta
+    property="twitter:title"
+    content="Front-End Masters League"
+  />
+  <meta
+    property="og:type"
+    content="article"
+  />
+  <meta
+    property="og:url"
+    content="https://yamoo9.github.io"
+  />
+  <meta
+    property="og:description"
+    content="Front-End 개발자를 꿈꾸는 이들을 위한 블렌디드 러닝으로 개발에 필요한 모든 것!"
+  />
+  <meta
+    property="og:image"
+    content="https://yamoo9.github.io/images/og-image.png"
+  />
+  <meta
+    property="og:article:author"
+    content="야무(yamoo9)"
+  />
+  <meta
+    name="apple-mobile-web-app-capable"
+    content="yes"
+  />
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black"
+  />
+  <link
+    rel="apple-touch-icon"
+    href="./images/apple-touch-icon.png"
+  />
+  <link
+    rel="stylesheet"
+    href="./fonts/fonts.css"
+  />
+  <link
+    rel="stylesheet"
+    href="css/page.css"
+  />
+  <link
+    rel="prefetch"
+    href="./sound/btn-over-sound.mp3"
+  />
+  <link
+    rel="prefetch"
+    href="./sound/trackpad-button-click.mp3"
+  />
+  <link
+    rel="prefetch"
+    href="./sound/shuffle.mp3"
+  />
+  <script src="./js/utils.js"></script>
+  <script src="./js/SoundControl.js"></script>
+  <script src="./js/Perspective3DText.js"></script>
+  <script src="./js/shffle.min.js"></script>
+  <script
+    src="./js/main.js"
+    defer
+  ></script>
+</head>
+
+<body>
+
+  <header>
+    <h1
+      lang="en"
+      class="uni-sans-heavy logo"
+      title="프론트엔드 마스터스 리그"
+      style="font-weight: 900"
+    >
+      <img
+        src="./images/logo.svg"
+        alt="Front-End Masters League"
+      />
+    </h1>
+    <a
+      href="/"
+      class="home-link"
+      aria-label="프론트엔드 마스터스 리그 홈"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="49"
+        height="49"
+        fill="none"
+        viewbox="0 0 49 49"
+      >
+        <path
+          stroke="#fff"
+          stroke-width="6"
+          d="M3 3h22v22H3z"
+        />
+        <path
+          stroke="#fff"
+          stroke-width="3"
+          d="M33.62 32.79H47.5v13.88H33.62z"
+        /></svg>
+    </a>
+    <p
+      lang="en"
+      class="uni-sans-thin catchprize"
+    >
+      lecturing<br />
+      the next level<br />
+      of UI develop
+    </p>
+    <ul
+      lang="en"
+      class="reset-list tags desktop-only-visible roboto"
+    >
+      <li>
+        <span class="tag">#Standards</span>
+      </li>
+      <li>
+        <span class="tag">#A11Y</span>
+      </li>
+      <li>
+        <span class="tag">#HTML5</span>
+      </li>
+      <li>
+        <span class="tag">#CSS3</span>
+      </li>
+      <li>
+        <span class="tag">#JavaScript</span>
+      </li>
+      <li>
+        <span class="tag">#DOM</span>
+      </li>
+      <li>
+        <span class="tag">#AJAX</span>
+      </li>
+      <li>
+        <span class="tag">#REST-API</span>
+      </li>
+      <li>
+        <span class="tag">#React</span>
+      </li>
+      <li>
+        <span class="tag">#Redux</span>
+      </li>
+      <li>
+        <span class="tag">#SPA</span>
+      </li>
+    </ul>
+  </header>
+
+  <main>
+    <h2 class="uni-sans-heavy module-title">
+      module<br />step.
+    </h2>
+    <ul class="reset-list module-list">
+      <li class="module-item">
+        <h3 class="module uni-sans-thin">
+          A <span class="a11y-hidden">모듈</span>
+        </h3>
+        <ul class="reset-list module-contents">
+          <li>웹 표준 및 접근성</li>
+          <li>
+            구조 디자인
+            <span
+              class="divider"
+              aria-hidden="true"
+            >|</span>
+            <abbr title="Hyper Text Markup Language">HTML</abbr>5
+          </li>
+          <li>
+            표현 디자인
+            <span
+              class="divider"
+              aria-hidden="true"
+            >|</span>
+            <abbr title="Cascading Style Sheets">CSS</abbr>3 스타일링/레이아웃
+          </li>
+          <li>
+            반응형 디자인
+            <span
+              class="divider"
+              aria-hidden="true"
+            >|</span>
+            <abbr title="Responsive Web Design">RWD</abbr>
+          </li>
+          <li>
+            버전 관리
+            <span
+              class="divider"
+              aria-hidden="true"
+            >|</span>
+            Git &amp; GitHub
+          </li>
+        </ul>
+      </li>
+      <li class="module-item">
+        <h3 class="module uni-sans-thin">
+          B <span class="a11y-hidden">모듈</span>
+        </h3>
+        <ul class="reset-list module-contents">
+          <li>
+            인터랙션 디자인
+            <span
+              class="divider"
+              aria-hidden="true"
+            >|</span>
+            JavaScript + <abbr title="Document Object Model Application Programming Interface">DOM API</abbr>
+          </li>
+          <li>
+            비동기 프로그래밍
+            <span
+              class="divider"
+              aria-hidden="true"
+            >|</span>
+            <abbr title="Asynchronous JavaScript And XML">AJAX</abbr> 및 보안 이슈
+          </li>
+          <li>
+            <abbr title="Representational State Transfer">REST</abbr>ful 웹 서비스
+            <span
+              class="divider"
+              aria-hidden="true"
+            >|</span>
+            <abbr title="Create, Read, Update, Delete">CRUD</abbr> +
+            REST API
+          </li>
+          <li title="ES6+ 란? ECMAScript 2015 이후 표준 버전을 말합니다.">
+            모던 자바스크립트
+            <span
+              class="divider"
+              aria-hidden="true"
+            >|</span>
+            <abbr title="ECMAScript (JavaScript 표준 명칭)">ES</abbr> 6+
+          </li>
+        </ul>
+      </li>
+      <li class="module-item">
+        <h3 class="module uni-sans-thin">
+          C <span class="a11y-hidden">모듈</span>
+        </h3>
+        <ul class="reset-list module-contents">
+          <li>React 프레임 워크</li>
+          <li>Styled Component</li>
+          <li>React Redux</li>
+          <li>React Router</li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="reset-list lecturers">
+      <li class="lecturer">
+        <a
+          href="https://www.facebook.com/seulbinim"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rwd-media"
+        >
+          <picture>
+            <!-- 67.4375em === 1079px -->
+            <source
+              media="(max-width: 67.4375em)"
+              srcset="./images/photo-deresa@2x.png"
+              type="image/png"
+            />
+            <img
+              src="./images/photo-deresa@2x.png"
+              alt=""
+            />
+          </picture>
+          <span class="mobile-only-visible uni-sans-heavy">A</span>
+          <span class="a11y-hidden">모듈을 담당 할 김데레사 강사 Facebook 바로가기</span>
+        </a>
+      </li>
+      <li class="lecturer">
+        <a
+          href="https://facebook.com/yamoo9"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rwd-media"
+        >
+          <picture>
+            <source
+              media="(max-width: 67.4375em)"
+              srcset="./images/photo-yamoo9@2x.png"
+              type="image/png"
+            />
+            <img
+              src="./images/photo-yamoo9@2x.png"
+              alt=""
+            />
+          </picture>
+          <span class="mobile-only-visible uni-sans-heavy">B<span class="uni-sans-thin">,</span>C</span>
+          <span class="a11y-hidden">모듈을 담당 할 야무 강사 Facebook 바로가기</span>
+        </a>
+      </li>
+    </ul>
+    <div
+      role="group"
+      class="module-links"
+    >
+      <a
+        class="module-link filled-white"
+        href="https://slides.com/yamoo9/feml/live"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        내게 맞는<br />모듈 찾기
+      </a>
+      <a
+        class="module-link unfilled-white"
+        href="https://forms.gle/5qY1ynpfz9qWxaKf8"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        모듈 과정<br />신청 하기
+      </a>
+    </div>
+    <aside class="lecture-info">
+      <h2 class="a11y-hidden">강의 정보</h2>
+      <dl class="lecture-definition uni-sans-heavy">
+        <div class="lecture-type">
+          <dt class="a11y-hidden">강의 유형</dt>
+          <dd class="is-blended-learning">
+            <button
+              type="button"
+              class="uni-sans-heavy"
+              lang="en"
+              aria-haspopup="dialog"
+              aria-pressed="false"
+            >blended<br />learning</button>
+          </dd>
+        </div>
+        <div class="lecture-date">
+          <dt class="a11y-hidden">강의 일시</dt>
+          <dd
+            lang="en"
+            class="uni-sans-heavy"
+          >
+            <time datetime="2019-10-26">2019<br /> 10.26</time><br /><abbr title="토요일(Saturday)">SAT</abbr>
+          </dd>
+        </div>
+        <div class="lecture-with">
+          <dt class="a11y-hidden">강의 진행</dt>
+          <dd
+            lang="en"
+            class="uni-sans-heavy"
+          >
+            <span class="with">with</span><br />
+            <span class="with-lecturer">yamoo9</span><br />
+            <span class="with-lecturer">deresa kim</span>
+          </dd>
+        </div>
+      </dl>
+      <a
+        href="https://slides.com/yamoo9/feml/fullscreen#/4"
+        class="lecture-schedule"
+        target="_blank"
+        rel="noreferrer noopener"
+        aria-label="강의 일정"
+      >
+        <picture class="lecture-infographic rwd-media">
+          <source
+            media="(min-width: 67.4375em)"
+            srcset="./images/lecture-infographic@2x.png"
+            type="image/png"
+          />
+          <img
+            src="./images/lecture-infographic.png"
+            alt=""
+          />
+        </picture>
+      </a>
+      <figure class="lecture-figure rwd-media">
+        <img
+          src="/images/lecture-hall@2x.jpg"
+          alt=""
+        />
+        <figcaption class="a11y-hidden">프론트엔드 개발 강의가 한참 진행 중인 강의장 풍경(웹 테크 콘서트 2019 #4)</figcaption>
+      </figure>
+    </aside>
+  </main>
+
+  <div
+    class="dim"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="blended-video-title"
+    tabindex="0"
+  >
+    <h3
+      id="blended-video-title"
+      class="a11y-hidden"
+    >
+      블렌디드 러닝이란?
+    </h3>
+    <video
+      src="./video/is-blended-learning.mp4"
+      controls
+      preload="auto"
+    ></video>
+    <button
+      type="button"
+      class="button-dim-close uni-sans-thin"
+      aria-label="모달 닫기"
+    >×</button>
+  </div>
+
+  <div
+    id="bg-video-wrapper"
+    role="presentation"
+  >
+    <video
+      src="./video/typing.mp4"
+      preload="auto"
+      autoplay
+      muted
+      loop
+    ></video>
+  </div>
+
+  <footer>
+    <h2 lang="en">
+      <a href="#">
+        <img
+          src="/images/play-fed.svg"
+          alt="Play! Front-End Develop"
+          class="play-fed"
+        />
+      </a>
+    </h2>
+  </footer>
+</body>
+
+</html>
