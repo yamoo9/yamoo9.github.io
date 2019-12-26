@@ -1,0 +1,1657 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Front-End Masters League Class: InfinityCarousel</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.flatly.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top ">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Front-End Masters League</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Carousel.html">Carousel</a></li><li><a href="CrossDirectionCarousel.html">CrossDirectionCarousel</a></li><li><a href="InfinityCarousel.html">InfinityCarousel</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-8">
+	
+		<div id="main">
+			
+
+	<h1 class="page-title">Class: InfinityCarousel</h1>
+<section>
+
+<header>
+    
+        <h2>
+        InfinityCarousel
+        </h2>
+        
+    
+</header>
+
+
+<article>
+    <div class="container-overview">
+    
+        
+<hr>
+<dt>
+    <h4 class="name" id="InfinityCarousel"><span class="type-signature"></span>new InfinityCarousel(selector, options)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>selector</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>캐러셀을 적용할 문서 객체 선택자</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>캐러셀 설정 옵션</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="InfinityCarousel.js.html">InfinityCarousel.js</a>,
+				 <a href="InfinityCarousel.js.html#sunlight-1-line-4">line 4</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">// 객체 생성 (기본 옵션 사용)
+new InfinityCarousel(&#x27;#carousel-1&#x27;)
+
+// 숨겨진 슬라이딩 영역 표시 옵션 설정
+new InfinityCarousel(&#x27;#carousel-1&#x27;, { look: true })
+
+// 캐러셀 작동 모드를 &#x27;세로&#x27;로 옵션 설정
+new InfinityCarousel(&#x27;#carousel-1&#x27;, { mode: &#x27;vertical&#x27; })
+
+// 인피니티 모드 OFF 옵션 설정
+new InfinityCarousel(&#x27;#carousel-1&#x27;, { infinity: false })
+
+// 인디케이터, 탐색 버튼 화면에 표시 OFF 옵션 설정
+new InfinityCarousel(&#x27;#carousel-1&#x27;, { indicators: false, buttons: false })</pre>
+
+
+    
+</dd>
+
+    
+    </div>
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="Carousel.html">Carousel</a></li>
+    </ul>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        <dl>
+            
+<hr>
+<dt class="name" id=".defaultOptions">
+    <h4 id=".defaultOptions"><span class="type-signature">&lt;static> </span>defaultOptions<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="InfinityCarousel.js.html">InfinityCarousel.js</a>,
+				 <a href="InfinityCarousel.js.html#sunlight-1-line-37">line 37</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+            
+<hr>
+<dt>
+    <h4 class="name" id="_activeIndicator"><span class="type-signature">&lt;protected> </span>_activeIndicator(activeIndex)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>상태 업데이트 메서드 - 인디케이터 활성화 표시, 클릭 비활성화</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>activeIndex</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>활성 인덱스</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Carousel.html#_activeIndicator">Carousel#_activeIndicator</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Carousel.js.html">Carousel.js</a>,
+				 <a href="Carousel.js.html#sunlight-1-line-209">line 209</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="_bindEvents"><span class="type-signature">&lt;protected> </span>_bindEvents()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>이벤트 연결 메서드 - 탐색 버튼, 인디케이터 클릭 이벤트</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="InfinityCarousel.html#_bindEvents">InfinityCarousel#_bindEvents</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="Carousel.html#_bindEvents">Carousel#_bindEvents</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="InfinityCarousel.js.html">InfinityCarousel.js</a>,
+				 <a href="InfinityCarousel.js.html#sunlight-1-line-71">line 71</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="_init"><span class="type-signature">&lt;protected> </span>_init()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>초기화 메서드</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="InfinityCarousel.html#_init">InfinityCarousel#_init</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="Carousel.html#_init">Carousel#_init</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="InfinityCarousel.js.html">InfinityCarousel.js</a>,
+				 <a href="InfinityCarousel.js.html#sunlight-1-line-52">line 52</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="_settingInfinity"><span class="type-signature">&lt;protected> </span>_settingInfinity()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="InfinityCarousel.js.html">InfinityCarousel.js</a>,
+				 <a href="InfinityCarousel.js.html#sunlight-1-line-93">line 93</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="_settingSlides"><span class="type-signature">&lt;protected> </span>_settingSlides()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>슬라이드 설정 메서드 - 인디케이터 표시 여부</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Carousel.html#_settingSlides">Carousel#_settingSlides</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Carousel.js.html">Carousel.js</a>,
+				 <a href="Carousel.js.html#sunlight-1-line-105">line 105</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="_slidingHandler"><span class="type-signature">&lt;protected> </span>_slidingHandler()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>이전,다음 탐색 버튼 클릭 이벤트 리스너 (메서드)</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Carousel.html#_slidingHandler">Carousel#_slidingHandler</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Carousel.js.html">Carousel.js</a>,
+				 <a href="Carousel.js.html#sunlight-1-line-148">line 148</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="_updateIndex"><span class="type-signature">&lt;protected> </span>_updateIndex()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="InfinityCarousel.js.html">InfinityCarousel.js</a>,
+				 <a href="InfinityCarousel.js.html#sunlight-1-line-147">line 147</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="_updateSlidePosition"><span class="type-signature">&lt;protected> </span>_updateSlidePosition()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="InfinityCarousel.js.html">InfinityCarousel.js</a>,
+				 <a href="InfinityCarousel.js.html#sunlight-1-line-161">line 161</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="gotoSlide"><span class="type-signature"></span>gotoSlide(activeIndex)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>탐색 메서드 - 전달 받은 인덱스를 토대로 슬라이드 컨테이너 이동</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>activeIndex</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>활성 인덱스</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="InfinityCarousel.html#gotoSlide">InfinityCarousel#gotoSlide</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="Carousel.html#gotoSlide">Carousel#gotoSlide</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="InfinityCarousel.js.html">InfinityCarousel.js</a>,
+				 <a href="InfinityCarousel.js.html#sunlight-1-line-215">line 215</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="nextSlide"><span class="type-signature"></span>nextSlide()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>다음 탐색 메서드</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="InfinityCarousel.html#nextSlide">InfinityCarousel#nextSlide</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="Carousel.html#nextSlide">Carousel#nextSlide</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="InfinityCarousel.js.html">InfinityCarousel.js</a>,
+				 <a href="InfinityCarousel.js.html#sunlight-1-line-204">line 204</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="prevSlide"><span class="type-signature"></span>prevSlide()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>이전 탐색 메서드</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="InfinityCarousel.html#prevSlide">InfinityCarousel#prevSlide</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="Carousel.html#prevSlide">Carousel#prevSlide</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="InfinityCarousel.js.html">InfinityCarousel.js</a>,
+				 <a href="InfinityCarousel.js.html#sunlight-1-line-193">line 193</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+	<span class="copyright">
+	<a href='https://yamoo9.github.io'>yamoo9.github.io</a> | @yamoo9
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a>
+	
+		on 2019-11-16T12:53:44+09:00
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>

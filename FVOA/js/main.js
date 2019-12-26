@@ -4,6 +4,7 @@
  * Copyright 2019, Front-End Masters League
  * http://yamoo9.github.io
  */
+
 ;(function FOVA(){
 	'use strict'
 
@@ -64,7 +65,7 @@
 	 * @summary  비디오 상태(감춤) 변경, 플레이 버튼 zIndex 인라인 스타일 설정 제거, 비디오 일시정지
 	 */
 	function hideVideo(){
-		videoOuter.classList.remove('video-show')
+		videoOuter.classList.remove('video--show')
 		videoOuter.classList.add('video--hide')
 		actionPlayButton.removeAttribute('style')
 		videoPlayer.pause()

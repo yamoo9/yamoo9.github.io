@@ -1,0 +1,29 @@
+{
+  "source": {
+    "include": [
+      "./components"
+    ],
+    "includePattern": ".js$",
+    "excludePattern": "(node_modules/|docs)"
+  },
+  "plugins": [
+    "plugins/markdown"
+  ],
+  "opts": {
+    "encoding": "utf8",
+    "readme": "./README.md",
+    "destination": "docs/",
+    "recurse": true,
+    "verbose": true
+  },
+  "templates": {
+    "systemName": "Front-End Masters League",
+    "copyright": "<a href='https://yamoo9.github.io'>yamoo9.github.io</a> | @yamoo9",
+    "theme": "flatly",
+    "linenums": true,
+    "collapseSymbols": false,
+    "outputSourceFiles": true,
+    "outputSourcePath": true,
+    "syntaxTheme": "default"
+  }
+}

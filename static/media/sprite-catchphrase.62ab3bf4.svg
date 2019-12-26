@@ -1,0 +1,8 @@
+<svg>
+  <symbol id="ellipse" viewBox="0 0 20 20">
+    <circle cx="10" cy="10" r="10" fill="#373E6A"/>
+  </symbol>
+  <symbol id="triangle" viewBox="0 0 24 20">
+    <path fill="#373E6A" d="M12 20L.742.5h22.516L12 20z"/>
+  </symbol>
+</svg>

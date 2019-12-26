@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Front-End Masters League Source: InfinityCarousel.js</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.flatly.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top ">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Front-End Masters League</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Carousel.html">Carousel</a></li><li><a href="CrossDirectionCarousel.html">CrossDirectionCarousel</a></li><li><a href="InfinityCarousel.html">InfinityCarousel</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-12">
+	
+		<div id="main">
+			
+
+		<h1 class="page-title">Source: InfinityCarousel.js</h1>
+    
+<section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">import { inherit, mixins } from '../utils'
+import Carousel from './Carousel'
+
+/**
+ * @extends Carousel
+ * @class InfinityCarousel
+ * @param {String} selector 캐러셀을 적용할 문서 객체 선택자
+ * @param {Object} options  캐러셀 설정 옵션
+ * @example
+ * // 객체 생성 (기본 옵션 사용)
+ * new InfinityCarousel('#carousel-1')
+ *
+ * // 숨겨진 슬라이딩 영역 표시 옵션 설정
+ * new InfinityCarousel('#carousel-1', { look: true })
+ *
+ * // 캐러셀 작동 모드를 '세로'로 옵션 설정
+ * new InfinityCarousel('#carousel-1', { mode: 'vertical' })
+ *
+ * // 인피니티 모드 OFF 옵션 설정
+ * new InfinityCarousel('#carousel-1', { infinity: false })
+ *
+ * // 인디케이터, 탐색 버튼 화면에 표시 OFF 옵션 설정
+ * new InfinityCarousel('#carousel-1', { indicators: false, buttons: false })
+ */
+function InfinityCarousel(selector, options){
+	// 믹스인 패턴을 사용해 옵션 객체 합성
+	this._options = mixins({}, InfinityCarousel.defaultOptions, options)
+	// 슈퍼 클래스 실행
+	Carousel.call(this, selector, this._options)
+}
+
+/**
+ * @memberof InfinityCarousel
+ * @static
+ * InfinityCarousel의 기본 옵션
+ */
+InfinityCarousel.defaultOptions = {
+	infinity: true,
+}
+
+// 클래스 상속
+// 서브 클래스 ← 슈퍼 클래스
+inherit(InfinityCarousel, Carousel)
+
+/**
+ * @protected
+ * @override
+ * 메서드 오버라이딩(Overriding, 재정의)
+ * 1. 부모 메서드를 덮어쓸 경우 (자식 메서드만 실행)
+ * 2. 부모 메서드를 확장하고 싶을 경우 (부모, 자식 메서드 모두 실행)
+ */
+InfinityCarousel.prototype._init = function(){
+	Carousel.prototype._init.call(this) /* 2 */
+
+	// 이전, 다음 인덱스 설정
+	this._prevIndex = this._total - 1
+	this._nextIndex = this._current + 1
+
+	// 이동 방향 설정
+	this._direction = -1 // next
+
+	// 인피니티 모드일 경우,
+	// this._settingInfinity() 실행
+	this._isInfinityMode &amp;&amp; this._settingInfinity()
+}
+
+/**
+ * @protected
+ * @override
+ */
+InfinityCarousel.prototype._bindEvents = function(){
+	Carousel.prototype._bindEvents.call(this) /* 2 */
+
+	const slides = this._slides
+
+	// 인피니티 모드 설정 참고 속성 설정
+	this._isInfinityMode = this._options.infinity
+
+	// 인피니티 모드일 경우만, 설정
+	if (this._isInfinityMode) {
+		slides.addEventListener('transitionend', () => {
+			this._updateSlidePosition()
+			slides.style.transition = 'none'
+			slides.style.transform = 'translate(0)'
+			window.setTimeout(() => (slides.style.transition = 'all 0.4s ease-out'))
+		})
+	}
+}
+
+/**
+ * @protected
+ */
+InfinityCarousel.prototype._settingInfinity = function(){
+	const slides = this._slides
+	// 슬라이드 컨테이너 스타일
+	let slidesStyles = null
+	// 슬라이드 스타일
+	let slideStyles = null
+
+	// 가로 모드 &amp; 인피니티 모드일 경우
+	if (!this._isVerticalMode &amp;&amp; this._isInfinityMode) {
+		slidesStyles = `
+			position: absolute;
+			left: -100%;
+			width: 300%;
+			height: 100%;
+		`
+		slideStyles = `
+			position: absolute;
+			left: -50%;
+			width: 33.3333%;
+			height: 100%;
+		`
+	}
+	else {
+		slidesStyles = `
+			position: absolute;
+			top: -100%;
+			left: 0;
+			width: 100%;
+			height: 300%;
+		`
+		slideStyles = `
+			position: absolute;
+			top: -100%;
+			left: 0%;
+			width: 100%;
+			height: 33.3333%;
+		`
+	}
+
+	// 슬라이드 컨테이너 스타일 설정
+	slides.style.cssText = slidesStyles
+
+	// 개별 슬라이드 스타일 설정
+	Array.from(slides.children).forEach((slide) => {
+		slide.style.cssText = slideStyles
+	})
+
+	// 슬라이드 포지션 업데이트
+	this._updateSlidePosition()
+}
+
+/**
+ * @protected
+ */
+InfinityCarousel.prototype._updateIndex = function(activeIndex){
+	// 활성 인덱스 값을 현재 인덱스 값으로 설정
+	this._current = activeIndex
+	// 이전 인덱스 설정
+	this._prevIndex = this._current - 1
+	this._prevIndex = this._prevIndex &lt; 0 ? this._total - 1 : this._prevIndex
+	// 다음 인덱스 설정
+	this._nextIndex = this._current + 1
+	this._nextIndex = this._nextIndex > this._total - 1 ? 0 : this._nextIndex
+}
+
+/**
+ * @protected
+ */
+InfinityCarousel.prototype._updateSlidePosition = function(){
+	const slides = this._slides
+	// 이전, 현재, 다음 인덱스 참조
+	const prevIndex = this._prevIndex
+	const current = this._current
+	const nextIndex = this._nextIndex
+	// 가로 또는 세로 모드에 따라 포지션 방향 속성 변경
+	const positionDirection =
+		this._isVerticalMode &amp;&amp; this._isInfinityMode ? 'top' : 'left'
+
+	// 이전, 현재, 다음 슬라이드 위치 변경
+	Array.from(slides.children).forEach((slide, i) => {
+		switch (i) {
+			case prevIndex:
+				slide.style[positionDirection] = '0%'
+				break
+			case current:
+				slide.style[positionDirection] = '33.3333%'
+				break
+			case nextIndex:
+				slide.style[positionDirection] = '66.6666%'
+				break
+			default:
+				slide.style[positionDirection] = '-100%'
+		}
+	})
+}
+
+/**
+ * @public
+ * @override
+ */
+InfinityCarousel.prototype.prevSlide = function(){
+	// 무빙 디렉션(이동 방향) 변경
+	this._direction = 1
+	// 슈퍼 클래스의 메서드 실행
+	Carousel.prototype.prevSlide.call(this)
+}
+
+/**
+ * @public
+ * @override
+ */
+InfinityCarousel.prototype.nextSlide = function(){
+	// 무빙 디렉션(이동 방향) 변경
+	this._direction = -1
+	// 슈퍼 클래스의 메서드 실행
+	Carousel.prototype.nextSlide.call(this)
+}
+
+/**
+ * @public
+ * @override 조건에 따라 오버라이딩 처리
+ */
+InfinityCarousel.prototype.gotoSlide = function(activeIndex, isInidicator){
+	// 인피니티 모드 여부에 따라 코드 분기
+	// 인피니트 모드일 경우, 슈퍼 클래스 메서드 오버라이딩
+	if (this._isInfinityMode) {
+		// 인디케이터를 표시 할 경우 처리 할 코드
+		if (isInidicator) {
+			this._direction = activeIndex > this._current ? -1 : 1
+			this._updateSlidePosition()
+		}
+		this._updateIndex(activeIndex)
+		this._slides.style.transform = `translate${this._axis}(${this._direction *
+			33.3333}%)`
+		this._activeIndicator(activeIndex)
+	}
+	else {
+		Carousel.prototype.gotoSlide.call(this, activeIndex)
+	}
+}
+
+// 모듈 내보내기
+export default InfinityCarousel
+</pre>
+    </article>
+</section>
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+	<span class="copyright">
+	<a href='https://yamoo9.github.io'>yamoo9.github.io</a> | @yamoo9
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a>
+	
+		on 2019-11-16T12:53:44+09:00
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>

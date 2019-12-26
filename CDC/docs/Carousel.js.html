@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Front-End Masters League Source: Carousel.js</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.flatly.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top ">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Front-End Masters League</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Carousel.html">Carousel</a></li><li><a href="CrossDirectionCarousel.html">CrossDirectionCarousel</a></li><li><a href="InfinityCarousel.html">InfinityCarousel</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-12">
+	
+		<div id="main">
+			
+
+		<h1 class="page-title">Source: Carousel.js</h1>
+    
+<section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">// import gsap from 'gsap'
+import { mixins, makeArray } from '../utils'
+
+/**
+ * Carousel 클래스 생성 과정에서 전달된 인자의 유효성 검사 함수
+ * @private
+ */
+const validateArgs = (selector, options = {}) => {
+	if (typeof selector !== 'string')
+		throw new Error('첫번째 인자인 선택자(selector)는 문자 값을 전달해야 합니다.')
+	if (!options || Array.isArray(options) || typeof options !== 'object') {
+		throw new Error('두번째 인자인 옵션(options)는 객체 값을 전달해야 합니다.')
+	}
+}
+
+/**
+ * 캐러셀 컴포넌트 클래스
+ * @class Carousel
+ * @param {String} selector 캐러셀로 설정 할 문서 객체 선택자
+ * @param {Object} options 캐러셀 설정 옵션
+ * 
+ * @example
+* // 객체 생성 (기본 옵션 사용)
+ * new Carousel('#carousel-1')
+ *
+ * // 숨겨진 슬라이딩 영역 표시 옵션 설정
+ * new Carousel('#carousel-1', { look: true })
+ *
+ * // 캐러셀 작동 모드를 '세로'로 옵션 설정
+ * new Carousel('#carousel-1', { mode: 'vertical' })
+ *
+ * // 인디케이터, 탐색 버튼 화면에 표시 OFF 옵션 설정
+ * new Carousel('#carousel-1', { indicators: false, buttons: false })
+ * 
+ * @license
+ * Copyright (c) 2019 yamoo9.github.io
+ */
+function Carousel(selector, options){
+	'use strict'
+	// 전달인자 데이터 유형 검사
+	validateArgs(selector, options)
+	// 캐러셀을 적용할 문서 객체 참조
+	this._carousel = document.querySelector(selector)
+	// 문서 객체 유효성 검사
+	if (this._carousel === null) {
+		// 사용자에게 경고 메시지 출력
+		console.warn(`캐러셀을 적용할 ${selector} 문서 객체가 존재하지 않습니다.`)
+		return // 종료
+	}
+	// 믹스인 패턴을 사용해 옵션 객체 합성
+	this._options = mixins({}, Carousel.defaultOptions, options)
+	this._init()
+}
+
+/**
+ * 캐러셀 컴포넌트 기본 옵션
+ * @static
+ * @memberof Carousel
+ */
+Carousel.defaultOptions = {
+	// 감춰진 슬라이드 컨테이너 overflow 영역 표시 설정
+	look: false,
+	// 가로 또는 세로 모드 설정
+	mode: 'horizontal',
+	// 내비게이션 버튼 컨트롤 표시 설정
+	buttons: true,
+	// 인디케이터 컨트롤 표시 설정
+	indicators: false,
+}
+
+/**
+ * 초기화 메서드
+ * @protected
+ */
+Carousel.prototype._init = function(){
+	const options = this._options
+
+	// 캐러셀 컴포넌트 각 컨트롤 변수 참조
+	const carousel = this._carousel
+	this._buttons = carousel.querySelectorAll('.carousel__button')
+	this._indicators = carousel.querySelector('.carousel__indicators')
+	this._slides = carousel.querySelector('.carousel__slides')
+
+	// 현재 활성 인덱스
+	this._current = 0
+	// 슬라이드 총 개수
+	this._total = this._slides.children.length
+	// 내비게이션 버튼 컨트롤 표시 모드
+	this._isVisibleButtons = options.buttons
+	// 인디케이터 표시 모드
+	this._isVisibleIndicatorsMode = options.indicators
+	// 캐러셀 수직 모드
+	this._isVerticalMode = options.mode === 'vertical'
+	// 수평(X) 또는 수직(Y) 모드에 따라 축 방향 설정
+	this._axis = !this._isVerticalMode ? 'X' : 'Y'
+
+	this._settingSlides()
+	this._bindEvents()
+}
+
+/**
+ * 슬라이드 설정 메서드 - 인디케이터 표시 여부
+ * @protected
+ */
+Carousel.prototype._settingSlides = function(){
+	const buttons = this._buttons
+	const indicators = this._indicators
+
+	// 인디케이터 초기 표시 설정
+	indicators.style.display = 'none'
+
+	// 내비게이션 버튼 컨트롤 표시 설정
+	if (!this._isVisibleButtons) {
+		makeArray(buttons).forEach((button) => (button.style.display = 'none'))
+	}
+
+	// 인디케이터 표시 설정
+	// 표시 설정 값이 true인 경우 화면에 표시
+	if (this._isVisibleIndicatorsMode) indicators.style.display = 'flex'
+
+	// 수직 모드 설정
+	if (this._isVerticalMode) this._carousel.setAttribute('data-vertical', true)
+
+	// 감춰진 슬라이딩 영역 표시 설정
+	if (this._options.look) this._carousel.setAttribute('data-look', true)
+}
+
+/**
+ * 이벤트 연결 메서드 - 탐색 버튼, 인디케이터 클릭 이벤트
+ * @protected
+ */
+Carousel.prototype._bindEvents = function(){
+	const buttons = this._buttons
+	const indicators = this._indicators
+
+	makeArray(buttons).forEach((button) =>
+		button.addEventListener('click', this._slidingHandler.bind(this))
+	)
+	makeArray(indicators.children).forEach((indicator, i) =>
+		indicator.addEventListener('click', this.gotoSlide.bind(this, i))
+	)
+}
+
+/**
+ * 이전,다음 탐색 버튼 클릭 이벤트 리스너 (메서드)
+ * @protected
+ */
+Carousel.prototype._slidingHandler = function(e){
+	const el = e.target
+	if (el.className.includes('--prev')) {
+		this.prevSlide()
+	}
+	else {
+		this.nextSlide()
+	}
+}
+
+/**
+ * 이전 탐색 메서드
+ * @public
+ */
+Carousel.prototype.prevSlide = function(){
+	this._current = --this._current &lt; 0 ? this._total - 1 : this._current
+	this.gotoSlide(this._current)
+}
+
+/**
+ * 다음 탐색 메서드
+ * @public
+ */
+Carousel.prototype.nextSlide = function(){
+	this._current = ++this._current > this._total - 1 ? 0 : this._current
+	this.gotoSlide(this._current)
+}
+
+/**
+ * 탐색 메서드 - 전달 받은 인덱스를 토대로 슬라이드 컨테이너 이동
+ * @public
+ * @param {Number} activeIndex 활성 인덱스
+ */
+Carousel.prototype.gotoSlide = function(activeIndex){
+	const slides = this._slides
+	const axis = this._axis
+	const total = this._total
+
+	if (!gsap) {
+		// CSS3 Transform &amp; Transiton
+		slides.style.transform = `translate${axis}(${-1 *
+			100 /
+			total *
+			activeIndex}%)`
+	}
+	else {
+		// GSAP, IE 8+
+		slides.style.transition = 'none'
+		gsap.to(slides, {
+			duration: 0.2,
+			[axis.toLowerCase()]: `${-1 * 100 / total * activeIndex}%`,
+		})
+	}
+	this._activeIndicator(activeIndex)
+}
+
+/**
+ * 상태 업데이트 메서드 - 인디케이터 활성화 표시, 클릭 비활성화
+ * @protected
+ * @param {Number} activeIndex 활성 인덱스
+ */
+Carousel.prototype._activeIndicator = function(activeIndex){
+	const indicators = this._indicators
+
+	// 이전 활성화 인디케이터
+	const prevActivatedIndicator = indicators.querySelector('.is-active')
+	prevActivatedIndicator.classList.remove('is-active')
+	prevActivatedIndicator.removeAttribute('disabled')
+	// 현재 활성화 인디케이터
+	const currentActivateIndicator = indicators.children[activeIndex]
+	currentActivateIndicator.classList.add('is-active')
+	currentActivateIndicator.setAttribute('disabled', true)
+}
+
+export default Carousel
+</pre>
+    </article>
+</section>
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+	<span class="copyright">
+	<a href='https://yamoo9.github.io'>yamoo9.github.io</a> | @yamoo9
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a>
+	
+		on 2019-11-16T12:53:44+09:00
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>

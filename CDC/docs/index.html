@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Front-End Masters League Index</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.flatly.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top ">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Front-End Masters League</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Carousel.html">Carousel</a></li><li><a href="CrossDirectionCarousel.html">CrossDirectionCarousel</a></li><li><a href="InfinityCarousel.html">InfinityCarousel</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-8">
+	
+		<div id="main">
+			
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+    <section class="readme-section">
+        <article><h2>Cross Direction Carousel</h2>
+<p>FEML 모듈 B 3주차는 크로스 디렉션 캐러셀 컴포넌트 클래스를 만들어 가는 과정을 학습합니다.</p>
+<h3>HTML 마크업</h3>
+<p>CDC 컴포넌트를 적용할 HTML 구조는 다음과 같이 작성합니다.
+각 사이드 캐러셀 그룹 내부의 슬라이더 영역에 화면에 표시할 콘텐츠를 추가할 수 있습니다.
+버튼 컨트롤의 콘텐츠에 아이콘 등 식별 가능한 콘텐츠를 커스터마이징 할 수 있습니다.</p>
+<pre class="prettyprint source lang-xml"><code>&lt;div class=&quot;CDC&quot; role=&quot;application&quot;>
+  &lt;!-- 사이드 캐러셀 01 그룹 -->
+  &lt;div class=&quot;CDC__carousel--one&quot; role=&quot;group&quot;>
+    &lt;figure class=&quot;CDC__slider&quot;>
+      &lt;div class=&quot;CDC__slide&quot;>
+        &lt;!-- 콘텐츠 -->
+      &lt;/div>
+      &lt;div class=&quot;CDC__slide&quot;>
+        &lt;!-- 콘텐츠 -->
+      &lt;/div>
+      &lt;!-- ... -->
+    &lt;/figure>
+  &lt;/div>
+  &lt;!-- 사이드 캐러셀 02 그룹 -->
+  &lt;div class=&quot;CDC__carousel--two&quot;>
+    &lt;figure class=&quot;CDC__slider&quot;>
+      &lt;div class=&quot;CDC__slide&quot;>
+        &lt;!-- 콘텐츠 -->
+      &lt;/div>
+      &lt;div class=&quot;CDC__slide&quot;>
+        &lt;!-- 콘텐츠 -->
+      &lt;/div>
+      &lt;!-- ... -->
+    &lt;/figure>
+  &lt;/div>
+  &lt;!-- 캐러셀 버튼 컨트롤 그룹 -->
+  &lt;div class=&quot;CDC__controls&quot; role=&quot;group&quot;>
+    &lt;button type=&quot;button&quot; class=&quot;CDC__controls--prev&quot;> prev &lt;/button>
+    &lt;button type=&quot;button&quot; class=&quot;CDC__controls--next&quot;> next &lt;/button>
+  &lt;/div>
+&lt;/div>
+</code></pre>
+<h3>CSS 스타일링</h3>
+<p>CDC 컴포넌트 사용자 기호에 맞게 스타일을 커스터마이징 하여 사용할 수 있습니다.</p>
+<pre class="prettyprint source lang-css"><code>/* Cross Direction Carousel */
+.CDC {
+	display: flex;
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+/* carousel */
+.CDC [class*=&quot;CDC__carousel--&quot;] {
+	overflow: hidden;
+	flex: 1 1 50%;
+	position: relative;
+	/* JavaScript를 사용해 이미지 가로 대비 세로 높이를 동적으로 계산해야 함 */
+	/* height: 614.5px; */
+}
+
+/* slider */
+.CDC__slider {
+	display: flex;
+	display: flex;
+	flex-flow: column;
+	position: absolute;
+}
+.CDC__carousel--one .CDC__slider {
+	top: 0;
+	/* JavaScript를 사용해 계산: 100% / 섹션의 개수(4) * -1 = -25% */
+	/* transform: translateY(-25%); */
+}
+.CDC__carousel--two .CDC__slider {
+	display: flex;
+	flex-flow: column-reverse;
+	bottom: 0;
+	/* JavaScript를 사용해 계산: 100% / 섹션의 개수(4) = 25% */
+	/* transform: translateY(25%); */
+}
+
+/* img */
+.CDC img {
+	width: 100%;
+	height: auto;
+}
+
+/* controls */
+.CDC__controls button[type=&quot;button&quot;] {
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	width: 50px;
+	height: 50px;
+	border: 0;
+	padding: 0;
+	background: none;
+	transform: translateY(-50%);
+	outline: none;
+	transition: none;
+}
+.CDC__controls button[type=&quot;button&quot;] svg {
+	width: 100%;
+	height: 100%;
+}
+.CDC__controls button[type=&quot;button&quot;]:hover svg {
+	transform: scale(1.1);
+}
+.CDC__controls button[type=&quot;button&quot;]:focus {
+	border-radius: 50%;
+	box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.5);
+}
+.CDC__controls--prev {
+	left: -25px;
+}
+.CDC__controls--next {
+	right: -25px;
+}
+
+/** ----------------------------
+ * SVG Buttons 스타일
+ */
+.has-red [id*=&quot;button-&quot;] path {
+	fill: #962d3b;
+}
+.has-black [id*=&quot;button-&quot;] path {
+	fill: #272528;
+}
+.has-green [id*=&quot;button-&quot;] path {
+	fill: #143f34;
+}
+.has-blue [id*=&quot;button-&quot;] path {
+	fill: #5ca1af;
+}
+</code></pre>
+<h3>JS 스크립팅</h3>
+<p>CDC 컴포넌트 클래스를 통해 인스턴스를 생성합니다.</p>
+<pre class="prettyprint source lang-javascript"><code>;(() => {
+  'use strict'
+  
+  // CDC 인스턴스 생성
+  new CrossDirectionCarousel('.CDC')
+
+  // CDC 인피니티 캐러셀 설정
+  new CrossDirectionCarousel('.CDC', '.demo', true)
+  
+})()
+
+</code></pre>
+<hr>
+<h2>JSDOC 가이드</h2>
+<p>JSDOC 사용법은 <a href="https://jsdoc.app/index.html">jsdoc.app</a> 문서를 참고하세요.</p>
+<hr>
+<h2>JSDOC 템플릿</h2>
+<p>JSDOC 템플릿 <a href="https://github.com/docstrap/docstrap">docstrap</a>을 사용해 문서의 테마를 설정합니다.</p></article>
+    </section>
+
+
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+	<span class="copyright">
+	<a href='https://yamoo9.github.io'>yamoo9.github.io</a> | @yamoo9
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a>
+	
+		on 2019-11-16T12:53:44+09:00
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>
