@@ -4,13 +4,140 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>페이지 이동 중...</title>
-    <script>
-      window.location.replace('https://euid.dev')
-    </script>
+    <title>이듬(E.UID) 블렌디드 러닝</title>
+    <link href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css" rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        background: #3b25b9;
+        color: #fff;
+        font: SpoqaHanSans, sans-serif;
+      }
+
+      nav ul {
+        list-style-type: none;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-left: 0;
+      }
+
+      nav a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .flex {
+        display: flex;
+      }
+
+      .flex.xEvenly {
+        justify-content: space-evenly;
+      }
+
+      .flex.xBetween {
+        justify-content: space-between;
+      }
+
+      .flex.xyCenter {
+        justify-content: center;
+        align-items: center;
+      }
+
+      .flex.yCenter {
+        align-items: center;
+      }
+
+      .full-page {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      .full-page__container {
+        display: flex;
+        flex-flow: column;
+        height: inherit;
+      }
+
+      .full-page__item {
+        height: 100%;
+      }
+
+      .full-page__link {
+        display: flex;
+        height: inherit;
+        padding-left: 2rem;
+        text-transform: uppercase;
+        font-weight: 300;
+        font-size: 3rem;
+        transition: all 0.4s ease;
+      }
+
+      .full-page__item:nth-child(1) .full-page__link {
+        background: rgba(0, 0, 0, 0);
+      }
+
+      .full-page__item:nth-child(2) .full-page__link {
+        background: rgba(0, 0, 0, 0.15);
+      }
+
+      .full-page__item:nth-child(3) .full-page__link {
+        background: rgba(0, 0, 0, 0.25);
+      }
+
+      .full-page__item:nth-child(4) .full-page__link {
+        background: rgba(0, 0, 0, 0.35);
+      }
+
+      .full-page__item:nth-child(5) .full-page__link {
+        background: rgba(0, 0, 0, 0.45);
+      }
+
+      @media (min-width: 768px) {
+
+        .full-page__container {
+          flex-flow: row;
+        }
+
+        .full-page__item {
+          width: 100%;
+          height: auto;
+        }
+
+        .full-page__link {
+          justify-content: center;
+          height: 100vh;
+          padding-left: 0;
+          font-size: 1.7rem;
+        }
+
+        .full-page__item .full-page__link:hover {
+          background: rgba(0, 0, 0, 0.7);
+        }
+
+        .full-page__item .full-page__link:focus {
+          outline: none;
+          box-shadow: inset 0 0 30px 10px rgba(0, 0, 0, 0.5);
+          font-size: 1.5rem;
+        }
+
+      }
+    </style>
   </head>
 
   <body>
+
+    <nav class="full-page">
+      <ul class="full-page__container flex xBetween">
+        <li class="full-page__item"><a class="full-page__link flex yCenter" href="./CDC/">CDC</a></li>
+        <li class="full-page__item"><a class="full-page__link flex yCenter" href="./debugging/">debugging</a></li>
+        <li class="full-page__item"><a class="full-page__link flex yCenter" href="./FEML/">FEML</a></li>
+        <li class="full-page__item"><a class="full-page__link flex yCenter" href="./FVOA/">FVOA</a></li>
+        <li class="full-page__item"><a class="full-page__link flex yCenter" href="./TCCA/">TCCA</a></li>
+      </ul>
+    </nav>
 
   </body>
 
